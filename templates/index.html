@@ -1,17 +1,36 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>titan-url</title>
-	<link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+    <title>Titan URL | Shorten your URLs</title>
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}"> -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/styles/style.css">
+    <!-- <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> -->
 </head>
 
 <body>
-    <h1>titan-url</h1>
+    <nav id="navbar">
+        <div id="logo">
+            <!-- img to the logo -->
+        </div>
 
-	<script src=" {{ url_for('static', filename='scripts/script.js') }} "> </script>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Shorten URL</a></li>
+            <li><a href="#">Features</a></li>
+            <li><a href="#">About Us</a></li>
+        </ul>
+    </nav>
+
+
+
+    <!-- <script src=" {{ url_for('static', filename='scripts/script.js') }} "> </script> -->
+    <script src="../static/scripts/script.js"></script>
 </body>
+
 </html>

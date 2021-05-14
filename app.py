@@ -1,5 +1,5 @@
-
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
@@ -7,4 +7,10 @@ app = Flask(__name__)
 def home():
 	return render_template('index.html')
 
-app.run(debug=True)
+@app.route("/shorten/<url>", methods=['POST'])
+def shorten(url):
+	pass
+
+
+if __name__ == "__main__":
+	app.run(debug=True)
