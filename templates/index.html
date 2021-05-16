@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/styles/style.css">
+    <link rel="stylesheet" href="../static/styles/utils.css">
     <!-- <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> -->
 </head>
 
@@ -20,13 +21,62 @@
         </div>
 
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Shorten URL</a></li>
-            <li><a href="#">Features</a></li>
-            <li><a href="#">About Us</a></li>
+            <li><a class="transition" href="#home">Home</a></li>
+            <li><a class="transition" href="#features">Features</a></li>
+            <li><a class="transition" href="#shorten">Shorten URL</a></li>
+            <li><a class="transition" href="#about">About Us</a></li>
         </ul>
     </nav>
 
+
+    <main>
+        <section id="home">
+            <h1 class="h-primary underline center">Welcome to Titan URL </h1>
+
+            <p class="p-primary center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, sit?</p>
+
+            <button class="home-button btn center transition">
+                <h1 class="p-primary underline center">Features</h1>
+            </button>
+
+            <button class="home-button btn center transition">
+                <h1 class="p-primary underline center">Shorten URLs</h1>
+            </button>
+        </section>
+
+        <section id="features">
+            <h1 class="h-primary">Why use Titan URL?</h1>
+            <div class="feature1">
+                <h2 class="h-secondary">FOSS</h2>
+                <p class="p-secondary center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt assumenda modi dolore dolorum ad aliquid.</p>
+            </div>
+
+            <div class="feature1">
+                <h2 class="h-secondary">No account needed</h2>
+                <p class="p-secondary center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt assumenda modi dolore dolorum ad aliquid.</p>
+            </div>
+
+            <div class="feature1">
+                <h2 class="h-secondary">Custom and random aliases</h2>
+                <p class="p-secondary center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt assumenda modi dolore dolorum ad aliquid.</p>
+            </div>
+
+            <div class="feature1">
+                <h2 class="h-secondary">Some another feature</h2>
+                <p class="p-secondary center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt assumenda modi dolore dolorum ad aliquid.</p>
+            </div>
+        </section>
+
+        <section id="shorten">
+            <h1 class="h-primary">Shorten URLs</h1>
+            <!-- some form content here -->
+        </section>
+
+        <section id="about">
+            <h1 class="h-primary">About</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde blanditiis ab culpa eaque assumenda minus magni laborum, quibusdam sapiente, optio cum molestias fuga illo nostrum porro vero repellendus explicabo voluptatem aut omnis quisquam excepturi! Quod magnam similique iure sed adipisci dolore quia nesciunt eos mollitia?</p>
+        </section>
+    </main>
 
 
     <!-- <script src=" {{ url_for('static', filename='scripts/script.js') }} "> </script> -->

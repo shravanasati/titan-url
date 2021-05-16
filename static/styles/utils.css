@@ -1,0 +1,63 @@
+/* utility classes */
+
+.transition{
+    transition: all 0.3s ease-in-out 0s;
+}
+
+.center{
+    text-align: center;
+}
+
+.underline{
+    text-decoration: underline;
+}
+
+.h-primary{
+    font-size: 3.8rem;
+    padding: 12px;
+    color: white;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.h-secondary{
+    font-size: 2rem;
+    padding: 20px 10px;
+    margin: 20px 10px;
+    color: black;
+    text-align: center;
+}
+
+.p-primary{
+    font-family: 'Ubuntu', sans-serif;
+    color: white;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.p-secondary{
+    font-family: 'Ubuntu', sans-serif;
+    color: black;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.btn{
+    border-radius: 10px;
+    padding: 6px 20px;
+    border: 2px solid white;
+    background-color: brown;
+    color: white;
+    margin: 16px;
+    /* width: 150px; */
+    cursor:pointer; 
+    font-size: 1.3rem;
+}
+
+.btn:hover{
+    background-color: tomato;
+    font-weight: bolder;
+    border-radius: 15px;
+    border-style: groove;
+}
+

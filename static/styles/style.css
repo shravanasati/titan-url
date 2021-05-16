@@ -8,11 +8,30 @@
 	font-family: 'Ubuntu', sans-serif;
 }
 
+
+/*  */
+/* NAVBAR */
+/*  */
+
 #navbar{
 	display: flex;
 	align-items: center;
 	position: sticky;
 	top: 0px;
+	margin: 5px;
+	padding: 12px 31px;
+}
+
+#navbar::before{
+	content: "";
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 100%;
+	background: rgb(177, 106, 243);
+	opacity: 0.7;
+	z-index: -1;
 }
 
 #navbar ul{
@@ -21,7 +40,7 @@
 
 #navbar ul li{
 	list-style: none;
-	font-size: 1.3rem;
+	font-size: 1.4rem;
 }
 
 #navbar ul li a {
@@ -32,12 +51,33 @@
 	border-radius: 15px;
 	text-decoration: none;
 
-	transition: all 0.3s ease-in-out 0s;
 }
 
 #navbar ul li a:hover {
-	background-color: brown;
 	border-radius: 20px;
+	font-weight: bolder;
 	text-decoration: underline;
-	color: dimgrey;
+	color: black;
+	background: rgba(251, 255, 0, 0.918);
+}
+
+
+/*  */
+/* HOME PAGE */
+/*  */
+
+#home{
+	width: 100vw;
+	height: 100vh;
+	background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+}
+
+
+/*  */
+/* FEATURES PAGE */
+/*  */
+#features{
+	width: 100vw;
+	height: 100vh;
+	background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
 }
