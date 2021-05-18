@@ -66,10 +66,37 @@
 /* HOME PAGE */
 /*  */
 
+.head-container{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-flow: column wrap;
+}
+
 #home{
 	width: 100vw;
 	height: 100vh;
 	background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+}
+
+#title{
+	position: relative;
+	top: 100px;
+}
+
+#title-text{
+	position: relative;
+	top: 120px;
+}
+
+#homebtn-1{
+	position: relative;
+	top: 150px;
+}
+
+#homebtn-2{
+	position: relative;
+	top: 150px;
 }
 
 
