@@ -1,4 +1,7 @@
 /* utility classes */
+* {
+    color: white;
+}
 
 .transition{
     transition: all 0.3s ease-in-out 0s;
@@ -23,8 +26,7 @@
 .h-secondary{
     font-size: 2rem;
     padding: 20px 10px;
-    margin: 20px 10px;
-    color: black;
+    margin: 5px;
     text-align: center;
 }
 
@@ -33,6 +35,7 @@
     color: white;
     text-align: center;
     font-size: 1.5rem;
+    padding: 10px 5px;
 }
 
 .p-secondary{
@@ -40,11 +43,13 @@
     color: black;
     text-align: center;
     font-size: 1.2rem;
+    padding: 7.5px 5px;
 }
 
 .btn{
     border-radius: 10px;
     padding: 6px 20px;
+    margin: 5px;
     border: 2px solid white;
     background-color: brown;
     color: white;

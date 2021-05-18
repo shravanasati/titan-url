@@ -9,18 +9,15 @@
     <!-- <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}"> -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../static/styles/style.css">
     <link rel="stylesheet" href="../static/styles/utils.css">
+    <link rel="stylesheet" href="../static/styles/style.css">
     <!-- <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> -->
 </head>
 
 <body>
     <nav id="navbar">
-        <div id="logo">
-            <!-- img to the logo -->
-        </div>
-
         <ul>
+            <li><a href="/">Titan URL</a></li>
             <li><a class="transition" href="#home">Home</a></li>
             <li><a class="transition" href="#features">Features</a></li>
             <li><a class="transition" href="#shorten">Shorten URL</a></li>
@@ -38,17 +35,17 @@
                 <p class="p-primary center" id="title-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, sit?</p>
     
                 <button class="home-button btn center transition" id="homebtn-1">
-                    <h1 class="p-primary underline center">Features</h1>
+                    <h2 class="p-primary underline center"> <a href="#features">Features</a> </h2>
                 </button>
     
                 <button class="home-button btn center transition" id="homebtn-2">
-                    <h1 class="p-primary underline center">Shorten URLs</h1>
+                    <h2 class="p-primary underline center"><a href="#shorten">Shorten URLs</a> </h2>
                 </button>
             </div>
         </section>
 
         <section id="features">
-            <h1 class="h-primary">Why use Titan URL?</h1>
+            <h1 class="h-primary underline center" id="feature-title">Why use Titan URL?</h1>
             <div class="feature1">
                 <h2 class="h-secondary">FOSS</h2>
                 <p class="p-secondary center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt assumenda modi dolore dolorum ad aliquid.</p>
@@ -65,7 +62,7 @@
             </div>
 
             <div class="feature1">
-                <h2 class="h-secondary">Some another feature</h2>
+                <h2 class="h-secondary center">Some another feature</h2>
                 <p class="p-secondary center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt assumenda modi dolore dolorum ad aliquid.</p>
             </div>
         </section>
