@@ -1,57 +1,59 @@
-from flask import Flask, render_template, request, redirect
-from flask_sqlalchemy import SQLAlchemy
-from random import randint
+from flask import Flask, render_template, request, redirect, jsonify
+import sqlite3
+from random import choice
+from string import ascii_letters, digits
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///urls.db"
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-db = SQLAlchemy(app)
 
 @app.route("/")
 def home():
 	return render_template('index.html')
 
 
-class URLForm(db.Model):
-	sno = db.Column(db.Integer, primary_key=True)
-	original_url = db.Column(db.String(1000), nullable=False)
-	alias_type = db.Column(db.String(6), nullable=False)
-	shortened_url = db.Column(db.String(100))
-
-	def __repr__(self) -> str:
-		return f"{self.original_url}: {self.alias_type} = {self.shortened_url} "
-
 @app.route("/shorten")
-def shorten():
-	url = request.form['original-url']
-	alias_type = request.form['alias-type']
+def shorten(url):
+	try:
+		url = request.form['original-url']
+		print(url)
+		# alias_type = request.form['alias-type']
 
-	if alias_type == "custom":
-		slug = request.form['slug']
-		shortened_url = "/{}".format(slug)
-		data = URLForm(original_url=url, alias_type=alias_type, shortened_url=shortened_url)
-		db.session.add(data)
-		db.session.commit()
+		slug = ""
+		for _ in range(6):
+			slug += choice(choice(digits), choice(ascii_letters), choice("-_-"))
+		print(slug)
+		conn = sqlite3.connect("urls.db")
+		c = conn.cursor()
+		c.execute("CREATE TABLE IF NOT EXISTS urls(original_url text, slug text)")
+		c.execute("INSERT INTO urls VALUES(:url, :slug)", {"url":url, "slug":slug})
+		conn.commit()
+		conn.close()
+		return jsonify({
+			"ok": True,
+			"shortened_url": f"/{slug}"
+		})
 
-	elif alias_type == "random":
-		slug = str(randint(100000, 1000000))
-		shortened_url = "/{}".format(slug)
-		data = URLForm(original_url=url, alias_type=alias_type, shortened_url=shortened_url)
-		db.session.add(data)
-		db.session.commit()
 
-	else:
-		print('error')
+	except Exception as e:
+		print(e)
+		return jsonify({
+			"ok": False,
+			"shortened_url": "none"
+		})
 
 @app.route("/<string:slug>")
-def main(slug):
-	results = URLForm.query_all()
-	for item in results:
-		if item.shortened_url[1:] == slug:
-			return redirect(item.original_url)
-
-	else:
+def get(slug):
+	conn = sqlite3.connect("urls.db")
+	c = conn.cursor()
+	c.execute("CREATE TABLE IF NOT EXISTS urls(original_url text, slug text)")
+	c.execute("SELECT * FROM urls WHERE slug = :slug", {"slug":slug})
+	try:
+		url = c.fetchall()[0][1]
+		return redirect(url)
+	except Exception as e:
+		print(e)
 		return render_template("404.html")
+	finally:
+		conn.close()
 
 if __name__ == "__main__":
 	app.run(debug=True)
