@@ -155,7 +155,7 @@ input[type='text'] {
 	border-radius: 10px;
 }
 
-.form button{
+input[type="submit"] {
 	margin-top: 0px;
 	height: 3rem;
 }

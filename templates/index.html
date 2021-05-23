@@ -72,14 +72,16 @@
             </h2>
 
             <div class="form">
-                <input type="text" name="original-url" id="original-url" placeholder="Enter the URL">
-
-                <button class="btn transition" id="shortenBtn">Shorten</button>
+                <form action="/shorten" method="get">
+                    <input type="text" name="original-url" id="original-url" placeholder="Enter the URL">
+    
+                    <input type="submit" class="btn transition" value="Shorten">
+                </form>
             </div>
 
             <div class="result">
                 <h2 class="h-secondary" id="result-url">
-                    Shortened URL will appear here
+                    {{ URL }}
                 </h2>
                 <button class="btn transition" id="copyBtn">Copy</button>
             </div>
