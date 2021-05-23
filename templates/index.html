@@ -34,13 +34,15 @@
     
                 <p class="p-primary center" id="title-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, sit?</p>
     
-                <button class="home-button btn center transition" id="homebtn-1">
-                    <h2 class="p-primary underline center"> <a href="#features">Features</a> </h2>
-                </button>
-    
-                <button class="home-button btn center transition" id="homebtn-2">
-                    <h2 class="p-primary underline center"><a href="#shorten">Shorten URLs</a> </h2>
-                </button>
+                <div class="home-buttons">
+                    <button class="home-button btn center transition" id="homebtn-1">
+                        <h2 class="p-primary underline center"> <a href="#features">Features</a> </h2>
+                    </button>
+        
+                    <button class="home-button btn center transition" id="homebtn-2">
+                        <h2 class="p-primary underline center"><a href="#shorten">Shorten URLs</a> </h2>
+                    </button>
+                </div>
             </div>
         </section>
 
@@ -61,15 +63,26 @@
                 <p class="p-secondary center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt assumenda modi dolore dolorum ad aliquid.</p>
             </div>
 
-            <div class="feature1">
-                <h2 class="h-secondary center">Some another feature</h2>
-                <p class="p-secondary center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt assumenda modi dolore dolorum ad aliquid.</p>
-            </div>
         </section>
 
         <section id="shorten">
-            <h1 class="h-primary">Shorten URLs</h1>
-            <!-- some form content here -->
+            <h1 class="h-primary" id="shorten-title">Shorten URLs</h1>
+            <h2 class="h-secondary">
+                Enter a URL to shorten it
+            </h2>
+
+            <div class="form">
+                <input type="text" name="original-url" id="original-url" placeholder="Enter the URL">
+
+                <button class="btn transition">Shorten</button>
+            </div>
+
+            <div class="result">
+                <h2 class="h-secondary" id="result-url">
+                    Shortened URL will appear here
+                </h2>
+                <button class="btn transition" id="copyBtn">Copy</button>
+            </div>
         </section>
 
         <section id="about">

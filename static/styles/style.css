@@ -1,3 +1,4 @@
+/* CSS RESET */
 * {
 	margin: 0px;
 	padding: 0px;
@@ -82,7 +83,7 @@
 
 #title{
 	position: relative;
-	top: 100px;
+	top: 120px;
 }
 
 #title-text{
@@ -114,4 +115,62 @@
 	position: relative;
 	top: 30px;
 	margin-bottom: 10px;
+}
+
+
+
+/*  */
+/* Shortening page */
+/*  */
+
+#shorten{
+	height: 100vh;
+	width: 100vw;
+	background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+}
+
+#shorten-title{
+	position: relative;
+	top: 40px;
+	margin-bottom: 40px;
+}
+
+.form{
+	margin-top: 40px;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+}
+
+input[type='text'] {
+	padding: 20px;
+	margin: 5px;
+	text-align: center;
+	width: 60vw;
+	height: 1.5rem;
+	vertical-align: middle;
+	background-color: brown;
+	font-family: 'Ubuntu', sans-serif;
+	font-size: 20px;
+	border-radius: 10px;
+}
+
+.form button{
+	margin-top: 0px;
+	height: 3rem;
+}
+
+.result{
+	display:flex;
+	justify-content: center;
+}
+
+.result h2 {
+	display: inline-block;
+	margin-right: 15px;
+}
+
+.result button {
+	margin-top: 22px;
+	height: 2.5rem;
 }
