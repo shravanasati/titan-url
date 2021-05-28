@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 import sqlite3
 from random import choice
 from string import ascii_letters, digits
+import re
 
 app = Flask(__name__)
 
@@ -17,11 +18,14 @@ def shorten():
 		print("URL", url)
 		# alias_type = request.form['alias-type']
 
+		if len(re.findall(r"[http|https|ftp]://\w", url)) == 0:
+			return render_template('404.html')
+
 		slug = ""
 		for _ in range(6):
 			slug += choice([choice(digits), choice(ascii_letters)])
 		print("SLUG",slug)
-		conn = sqlite3.connect("urls.db")
+		conn = sqlite3.connect("./urls.db")
 		c = conn.cursor()
 		c.execute("CREATE TABLE IF NOT EXISTS urls(original_url text, slug text)")
 		c.execute("INSERT INTO urls VALUES(:url, :slug)", {"url":url, "slug":slug})
@@ -36,7 +40,7 @@ def shorten():
 
 @app.route("/<string:slug>")
 def get(slug):
-	conn = sqlite3.connect("urls.db")
+	conn = sqlite3.connect("./urls.db")
 	c = conn.cursor()
 	c.execute("CREATE TABLE IF NOT EXISTS urls(original_url text, slug text)")
 	c.execute("SELECT * FROM urls WHERE slug = :slug", {"slug":slug})
