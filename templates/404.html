@@ -4,7 +4,12 @@
 <head>
     <title>The page you were looking for doesn't exist (404)</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
     <style>
+        * {
+            font-family: 'Ubuntu', sans-serif;
+        }
         body {
             background-color: #26292E;
             color: #2E2F30;
@@ -72,7 +77,6 @@
 </head>
 
 <body>
-    <!-- This file lives in public/404.html -->
     <img src="{{ url_for('static', filename='images/light-bulb.png') }}" class="image">
     <div>
         <div class="dialog">
