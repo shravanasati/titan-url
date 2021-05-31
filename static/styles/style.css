@@ -174,3 +174,19 @@ input[type="submit"] {
 	margin-top: 22px;
 	height: 2.5rem;
 }
+
+
+/*  */
+/* Shortening page */
+/*  */
+
+
+#about{
+	background-image: linear-gradient(to right, #92fe9d 0%, #00c9ff 100%);;
+	height: 50vh;
+	width: 100vw;
+}
+
+#about-title{
+	margin-bottom: 20px;
+}
