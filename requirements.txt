@@ -2,3 +2,4 @@
 
 # titan-url/app.py: 1
 Flask == 1.1.1
+gunicorn == 20.0.4
