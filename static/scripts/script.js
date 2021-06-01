@@ -12,18 +12,5 @@ async function copyToClipboard() {
     copybtn.innerText = "Copy"
 }
 
-function shorten() {
-    console.log("request");
-    let url = document.getElementById("original-url").innerText
-    if(url.trim() == "") {return}
-    fetch("/shorten")
-    .then(resp => resp.json())
-    .then(json => console.log(json))
-}
 let copyBtn = document.getElementById("copyBtn")
-
 copyBtn.addEventListener("click", copyToClipboard)
-
-let shortenBtn = document.getElementById("shortenBtn")
-console.log(shortenBtn);
-shortenBtn.addEventListener("click", shorten)

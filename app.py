@@ -5,10 +5,11 @@ from string import ascii_letters, digits
 import re
 
 app = Flask(__name__)
+app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 @app.route("/")
 def home():
-	return render_template('index.html', URL="The shortened URL will appear here")
+	return render_template('index.html', URL="The shortened URL will appear here", scroll="no")
 
 
 @app.route("/shorten", methods=['GET'])
@@ -31,7 +32,7 @@ def shorten():
 		c.execute("INSERT INTO urls VALUES(:url, :slug)", {"url":url, "slug":slug})
 		conn.commit()
 		conn.close()
-		return render_template('index.html', URL=f"{request.host_url}/{slug}")
+		return render_template('index.html', URL=f"{request.host_url}/{slug}", scroll="yes")
 
 
 	except Exception as e:
