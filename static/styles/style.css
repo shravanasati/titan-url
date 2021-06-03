@@ -78,7 +78,7 @@
 #home{
 	width: 100vw;
 	height: 100vh;
-	background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+	/* background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%); */
 }
 
 #title{
@@ -108,7 +108,7 @@
 #features{
 	width: 100vw;
 	height: 100vh;
-	background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+	/* background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%); */
 }
 
 #feature-title{
@@ -126,7 +126,7 @@
 #shorten{
 	height: 100vh;
 	width: 100vw;
-	background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	/* background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
 }
 
 #shorten-title{
@@ -142,7 +142,7 @@
 	align-content: center;
 }
 
-input[type='text'] {
+/* input[type='text'] {
 	padding: 20px;
 	margin: 5px;
 	text-align: center;
@@ -153,8 +153,19 @@ input[type='text'] {
 	font-family: 'Ubuntu', sans-serif;
 	font-size: 20px;
 	border-radius: 10px;
-}
+} */
 
+#myVideo {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	min-width: 100%;
+	min-height: 100%;
+  }
+  
 input[type="submit"] {
 	margin-top: 0px;
 	height: 3rem;
@@ -175,18 +186,3 @@ input[type="submit"] {
 	height: 2.5rem;
 }
 
-
-/*  */
-/* Shortening page */
-/*  */
-
-
-#about{
-	background-image: linear-gradient(to right, #92fe9d 0%, #00c9ff 100%);;
-	height: 50vh;
-	width: 100vw;
-}
-
-#about-title{
-	margin-bottom: 20px;
-}
