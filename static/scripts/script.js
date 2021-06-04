@@ -12,5 +12,12 @@ async function copyToClipboard() {
     copybtn.innerText = "Copy"
 }
 
+const shorten = () => {
+
+    fetch("/shorten")
+        .then(async r => console.log(await r.json()))
+        .catch(e => console.error('Boo...' + e))
+}
+
 let copyBtn = document.getElementById("copyBtn")
 copyBtn.addEventListener("click", copyToClipboard)

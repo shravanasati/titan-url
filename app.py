@@ -32,7 +32,7 @@ def shorten():
 		c.execute("INSERT INTO urls VALUES(:url, :slug)", {"url":url, "slug":slug})
 		conn.commit()
 		conn.close()
-		return render_template('index.html', URL=f"{request.host_url}/{slug}", scroll="yes")
+		return render_template('index.html', URL=f"{request.host_url}{slug}", scroll="yes")
 
 
 	except Exception as e:
