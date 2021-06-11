@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, jsonify
 import sqlite3
 from random import choice
 from string import ascii_letters, digits
@@ -12,15 +12,18 @@ def home():
 	return render_template('index.html', URL="The shortened URL will appear here", scroll="no")
 
 
-@app.route("/shorten", methods=['GET'])
+@app.route("/shorten/", methods=['GET'])
 def shorten():
 	try:
-		url = request.args.get("original-url")
+		url = request.args.get("url")
 		print("URL", url)
 		# alias_type = request.form['alias-type']
 
 		if len(re.findall(r"[http|https|ftp]://\w", url)) == 0:
-			return render_template('404.html')
+			return jsonify({
+				"ok":  False,
+				"message": "The URL you entered is not valid."
+			})
 
 		slug = ""
 		for _ in range(6):
@@ -32,12 +35,18 @@ def shorten():
 		c.execute("INSERT INTO urls VALUES(:url, :slug)", {"url":url, "slug":slug})
 		conn.commit()
 		conn.close()
-		return render_template('index.html', URL=f"{request.host_url}{slug}", scroll="yes")
 
+		return jsonify({
+			"ok": True,
+			"message": f"{request.host_url}{slug}"
+		})
 
 	except Exception as e:
 		print(e)
-		return render_template('404.html')
+		return jsonify({
+			"ok": False,
+			"message": "An internal server error occured!"
+		})
 
 @app.route("/<string:slug>")
 def get(slug):
@@ -56,4 +65,4 @@ def get(slug):
 		conn.close()
 
 if __name__ == "__main__":
-	app.run(debug=True)
+	app.run(debug=True, use_reloader=False)
