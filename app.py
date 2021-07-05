@@ -33,22 +33,18 @@ def shorten():
         print("URL", url)
         print("Alias Type", alias_type)
 
-        if len(re.findall(r"[http|https|ftp|ftps]://\w", url)) == 0:
+        if len(re.findall(r"^[http|https|ftp|ftps]://\w", url)) == 0:
             return jsonify({
                 "ok": False,
                 "message": "The entered URL is invalid."
             })
 
         if alias_type == "random":
-            slug = ""
-            for _ in range(6):
-                slug += choice([choice(digits), choice(ascii_letters)])
+            slug = "".join([choice([choice(digits), choice(ascii_letters)]) for _ in range(6)])
     
             slug_used = is_slug_used(slug)
             while slug_used:
-                slug = ""
-                for _ in range(6):
-                    slug += choice([choice(digits), choice(ascii_letters)])
+                slug = "".join([choice([choice(digits), choice(ascii_letters)]) for _ in range(6)])
                 slug_used = is_slug_used(slug)
 
         elif alias_type == "custom":

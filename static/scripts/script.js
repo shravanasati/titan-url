@@ -11,11 +11,50 @@ async function copyToClipboard() {
     copybtn.innerText = "Copy"
 }
 
-const shorten = () => {
+const getRequestData = () => {
+    const url = document.getElementById("original-url")
+    const aliasType = document.getElementById("alias-type")
+    let slug = ""
 
-    fetch("/shorten")
-        .then(async r => console.log(await r.json()))
-        .catch(e => console.error('Boo...' + e))
+    if (aliasType == "custom") {
+        slug = document.getElementById("custom-slug")
+    }
+
+    return {
+        "url": url,
+        "aliasType": aliasType,
+        "slug": slug
+    }
+}
+
+async function shorten() {
+    let requestData = getRequestData()
+
+    await fetch("/shorten", {
+        method: 'GET',
+        cache: 'no-cache', 
+        headers: {
+            'Content-Type': 'application/json',
+            'original-url': requestData["url"],
+            'alias-type': requestData["aliasType"],
+            'slug': requestData["slug"]
+        },
+    })
+
+    .then(response => {return response.json()})
+
+    .then(data => {
+        let urlText = document.getElementById("result-url")
+        urlText.innerText = data["message"]
+        urlText.scrollIntoView()
+    })
+
+    .catch(err => {
+        let urlText = document.getElementById("result-url")
+        urlText.innerText = "An error occured! Check your internet connection."
+        urlText.scrollIntoView()
+    })
+
 }
 
 let copyBtn = document.getElementById("copyBtn")
