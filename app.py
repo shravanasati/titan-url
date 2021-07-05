@@ -2,10 +2,20 @@ from flask import Flask, render_template, request, redirect, jsonify
 import sqlite3
 from random import choice
 from string import ascii_letters, digits
-import re
+from requests.models import PreparedRequest
+from requests.exceptions import MissingSchema
 
 app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
+
+
+def check_url(url: str) -> bool:
+    prepared_request = PreparedRequest()
+    try:
+        prepared_request.prepare_url(url, None)
+        return True
+    except MissingSchema as e:
+        return False
 
 
 @app.route("/")
@@ -33,7 +43,7 @@ def shorten():
         print("URL", url)
         print("Alias Type", alias_type)
 
-        if len(re.findall(r"^[http|https|ftp|ftps]://\w", url)) == 0:
+        if not check_url(url):
             return jsonify({
                 "ok": False,
                 "message": "The entered URL is invalid."
