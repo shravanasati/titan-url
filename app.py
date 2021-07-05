@@ -7,62 +7,100 @@ import re
 app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
+
 @app.route("/")
 def home():
-	return render_template('index.html', URL="The shortened URL will appear here", scroll="no")
+    return render_template('index.html', URL="The shortened URL will appear here", scroll="no")
+
+def is_slug_used(slug:str) -> bool:
+    """
+    Returns a boolean value whether the given slug has been used or not.
+    """
+    conn = sqlite3.connect("./urls.db")
+    c = conn.cursor()
+    c.execute("CREATE TABLE IF NOT EXISTS urls(original_url text, slug text)")
+    c.execute("SELECT (slug) FROM urls")
+    used_slugs = {i[0] for i in c.fetchall()}
+
+    return slug in used_slugs
 
 
-@app.route("/shorten/", methods=['GET'])
+@app.route("/shorten", methods=['GET'])
 def shorten():
-	try:
-		url = request.args.get("url")
-		print("URL", url)
-		# alias_type = request.form['alias-type']
+    try:
+        url = request.headers["original-url"]
+        alias_type = request.headers["alias-type"]
+        print("URL", url)
+        print("Alias Type", alias_type)
 
-		if len(re.findall(r"[http|https|ftp]://\w", url)) == 0:
-			return jsonify({
-				"ok":  False,
-				"message": "The URL you entered is not valid."
-			})
+        if len(re.findall(r"[http|https|ftp|ftps]://\w", url)) == 0:
+            return jsonify({
+                "ok": False,
+                "message": "The entered URL is invalid."
+            })
 
-		slug = ""
-		for _ in range(6):
-			slug += choice([choice(digits), choice(ascii_letters)])
-		print("SLUG",slug)
-		conn = sqlite3.connect("./urls.db")
-		c = conn.cursor()
-		c.execute("CREATE TABLE IF NOT EXISTS urls(original_url text, slug text)")
-		c.execute("INSERT INTO urls VALUES(:url, :slug)", {"url":url, "slug":slug})
-		conn.commit()
-		conn.close()
+        if alias_type == "random":
+            slug = ""
+            for _ in range(6):
+                slug += choice([choice(digits), choice(ascii_letters)])
+    
+            slug_used = is_slug_used(slug)
+            while slug_used:
+                slug = ""
+                for _ in range(6):
+                    slug += choice([choice(digits), choice(ascii_letters)])
+                slug_used = is_slug_used(slug)
 
-		return jsonify({
-			"ok": True,
-			"message": f"{request.host_url}{slug}"
-		})
+        elif alias_type == "custom":
+            slug = request.headers["slug"]
+            if is_slug_used(slug):
+                return jsonify({
+                    "ok": False,
+                    "message": "This custom alias is already used! Try another one."
+                })
 
-	except Exception as e:
-		print(e)
-		return jsonify({
-			"ok": False,
-			"message": "An internal server error occured!"
-		})
+        else:
+            return jsonify({
+                "ok": False,
+                "message": "Invalid slug type!"
+            })
+
+        print("SLUG", slug)
+
+        conn = sqlite3.connect("./urls.db")
+        c = conn.cursor()
+        c.execute("CREATE TABLE IF NOT EXISTS urls(original_url text, slug text)")
+        c.execute("INSERT INTO urls VALUES(:url, :slug)",
+                  {"url": url, "slug": slug})
+        conn.commit()
+        conn.close()
+
+        return jsonify({
+            "ok": True,
+            "message": f"{request.host_url}{slug}"
+        })
+
+    except Exception as e:
+        print(e)
+        return render_template('404.html')
+
 
 @app.route("/<string:slug>")
 def get(slug):
-	conn = sqlite3.connect("./urls.db")
-	c = conn.cursor()
-	c.execute("CREATE TABLE IF NOT EXISTS urls(original_url text, slug text)")
-	c.execute("SELECT * FROM urls WHERE slug = :slug", {"slug":slug})
-	try:
-		url = c.fetchone()[0]
-		print(url)
-		return redirect(url)
-	except Exception as e:
-		print(e)
-		return render_template("404.html")
-	finally:
-		conn.close()
+    conn = sqlite3.connect("./urls.db")
+    c = conn.cursor()
+    c.execute("CREATE TABLE IF NOT EXISTS urls(original_url text, slug text)")
+    c.execute("SELECT * FROM urls WHERE slug = :slug", {"slug": slug})
+    try:
+        url = c.fetchone()[0]
+        print(url)
+        return redirect(url)
+    except Exception as e:
+        print(e)
+        return render_template("404.html")
+    finally:
+        conn.close()
+
 
 if __name__ == "__main__":
-	app.run(debug=True, use_reloader=False)
+    app.run(debug=True)
