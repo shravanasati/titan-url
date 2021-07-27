@@ -11,34 +11,38 @@ async function copyToClipboard() {
     copybtn.innerText = "Copy"
 }
 
-const getRequestData = () => {
-    const url = document.getElementById("original-url")
-    const aliasType = document.getElementById("alias-type")
-    let slug = ""
+let copyBtn = document.getElementById("copyBtn")
+copyBtn.addEventListener("click", copyToClipboard)
 
-    if (aliasType == "custom") {
-        slug = document.getElementById("custom-slug")
-    }
+const getRequestData = () => {
+    const url = document.getElementById("original-url").value
+    let aliasType = document.getElementById("alias").value
+    let slug = document.getElementById("slug").value
+
+    console.log(url);
+    console.log(aliasType);
+    console.log(slug);
 
     return {
-        "url": url,
-        "aliasType": aliasType,
+        "original-url": url,
+        "alias-type": aliasType,
         "slug": slug
     }
 }
 
 async function shorten() {
+    console.log("shortening...");
     let requestData = getRequestData()
 
+    let data = new FormData()
+    data.append("original-url", requestData["original-url"])
+    data.append("alias-type", requestData["alias-type"])
+    data.append("slug", requestData["slug"])
+
     await fetch("/shorten", {
-        method: 'GET',
-        cache: 'no-cache', 
-        headers: {
-            'Content-Type': 'application/json',
-            'original-url': requestData["url"],
-            'alias-type': requestData["aliasType"],
-            'slug': requestData["slug"]
-        },
+        method: 'POST',
+        cache: 'no-cache',
+        body: data,
     })
 
     .then(response => {return response.json()})
@@ -57,5 +61,6 @@ async function shorten() {
 
 }
 
-let copyBtn = document.getElementById("copyBtn")
-copyBtn.addEventListener("click", copyToClipboard)
+
+let shortenBtn = document.getElementById("shortenBtn")
+shortenBtn.addEventListener("click", shorten)

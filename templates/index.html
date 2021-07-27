@@ -62,13 +62,24 @@
             <div class="relative mr-4 md:w-full lg:w-full xl:w-1/2 w-2/4">
               <label for="hero-field" class="leading-7 text-sm text-gray-400"></label>
               <div class="form">
-              </div><input type="text" id="original-url" name="original-url"
-                class="w-full bg-gray-800 rounded bg-opacity-40 border border-gray-700 focus:ring-2 focus:ring-red-900 focus:bg-transparent focus:border-red-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                placeholder="Enter the URL">
-            </div>
-            <input type="submit"
-              class="inline-flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg"
-              value="Shorten">
+                </div><input type="text" id="original-url" name="original-url"
+                  class="w-full bg-gray-800 rounded bg-opacity-40 border border-gray-700 focus:ring-2 focus:ring-red-900 focus:bg-transparent focus:border-red-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                  placeholder="Enter the URL">
+              </div>
+              <br>
+              <div display="block">
+                <input type="text" id="alias" name="alias-type"
+                  class="w-full bg-gray-800 rounded bg-opacity-40 border border-gray-700 focus:ring-2 focus:ring-red-900 focus:bg-transparent focus:border-red-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                  placeholder="(Optional) Alias type">
+                  <br>
+                <input type="text" id="slug" name="slug"
+                  class="w-full bg-gray-800 rounded bg-opacity-40 border border-gray-700 focus:ring-2 focus:ring-red-900 focus:bg-transparent focus:border-red-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                  placeholder="(Optional) Alias">
+              </div>
+              <br>
+              <br>
+              <button id="shortenBtn"
+                class="inline-flex text-white bg-red-500 border-1 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg"> Shorten </button>
           </div>
 
         </div>
@@ -78,7 +89,7 @@
       </div>
       <div class="result">
         <h2 class="leading-relaxed mb-8" id="result-url">
-          {{ URL }}
+          The shortened URL will appear here.
         </h2>
         <button
           class="inline-flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg"

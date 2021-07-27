@@ -35,13 +35,21 @@ def is_slug_used(slug:str) -> bool:
     return slug in used_slugs
 
 
-@app.route("/shorten", methods=['GET'])
+@app.route("/shorten", methods=['GET', 'POST'])
 def shorten():
     try:
-        url = request.headers["original-url"]
-        alias_type = request.headers["alias-type"]
+        if request.method == "GET":
+            return render_template("index.html")
+
+        url = request.form.get("original-url")
+        alias_type = request.form.get("alias-type")
         print("URL", url)
         print("Alias Type", alias_type)
+        if url is None or alias_type is None:
+            return jsonify({
+                "ok": False,
+                "message": "Missing fields `original-url` or `alias-type`."
+            })
 
         if not check_url(url):
             return jsonify({
@@ -58,17 +66,23 @@ def shorten():
                 slug_used = is_slug_used(slug)
 
         elif alias_type == "custom":
-            slug = request.headers["slug"]
+            slug = request.form.get("slug")
+            if slug is None:
+                return jsonify({
+                    "ok": False,
+                    "message": "Missing field `slug`."
+                })
+
             if is_slug_used(slug):
                 return jsonify({
                     "ok": False,
-                    "message": "This custom alias is already used! Try another one."
+                    "message": "This custom alias has already been used! Try another one."
                 })
 
         else:
             return jsonify({
                 "ok": False,
-                "message": "Invalid slug type!"
+                "message": "Invalid alias type!"
             })
 
         print("SLUG", slug)
