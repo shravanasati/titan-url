@@ -1,310 +1,496 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta name="google-site-verification" content="aPqwSSs36MAE8EUIC-kDA4gvuLH8Lfkz7CigxXypNPY" />
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Titan URL | Shorten your URLs</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/utils.css') }}">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="../static/styles/utils.css"> --> 
-    <link rel="stylesheet" href="../static/styles/style.css">
-    <link rel="shortcut icon" href="https://lh3.googleusercontent.com/-31-codqBgas/YLe3EgGX5VI/AAAAAAAAAd0/UQ06BPBa0Iwwy7Yvg20kyKsJGI3Kzl21ACLcBGAsYHQ/tlog.jpeg" type="image/jpg">
+<>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Titan URL | Shorten your URLs</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/utils.css') }}">
+
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="shortcut icon"
+    href="https://lh3.googleusercontent.com/-31-codqBgas/YLe3EgGX5VI/AAAAAAAAAd0/UQ06BPBa0Iwwy7Yvg20kyKsJGI3Kzl21ACLcBGAsYHQ/tlog.jpeg"
+    type="image/jpg">
+<meta name="google-site-verification" content="aPqwSSs36MAE8EUIC-kDA4gvuLH8Lfkz7CigxXypNPY" />
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Titan URL | Shorten your URLs</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/utils.css') }}">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+<!-- <link rel="stylesheet" href="../static/styles/utils.css"> -->
+<link rel="stylesheet" href="../static/styles/style.css">
+<link rel="shortcut icon"
+  href="https://lh3.googleusercontent.com/-31-codqBgas/YLe3EgGX5VI/AAAAAAAAAd0/UQ06BPBa0Iwwy7Yvg20kyKsJGI3Kzl21ACLcBGAsYHQ/tlog.jpeg"
+  type="image/jpg">
 </head>
 <style>
-    #navlost {
-        position: sticky;
-        top: 0;
-    }
+  #navlost {
+    position: sticky;
+    top: 0;
+  }
 
 
-    * {
-      overflow-x: hidden;
-}
-
+  * {
+    overflow-x: hidden;
+  }
 </style>
+
 <body>
-    <div id="navlost" >
-        <header class="text-gray-400 bg-gray-600 body-font">
-            <div class="container mx-auto flex flex-wrap p-3 flex-col md:flex-row items-center">
-            <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
-                <img src="../static/images/logomain.png" alt="" width="70">
-                <span class="ml-3 text-xl">Titan Url</span>
-            </a>
-            <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-700	flex flex-wrap items-center text-base justify-center">
-                <a class="mr-5 hover:text-white" href="#home">Home</a>
-                <a class="mr-5 hover:text-white" href="#adv">Features</a>
-                <a class="mr-5 hover:text-white" href="#shortener">Shorten</a>
-                <a class="mr-5 hover:text-white" href="#abt">About</a>
-            </nav>
-            </div>
-        </header>
+  <div id="navlost">
+    <header class="text-gray-400 bg-gray-600 body-font">
+      <div class="container mx-auto flex flex-wrap p-3 flex-col md:flex-row items-center">
+        <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
+          <img src="../static/images/logomain.png" alt="" width="70">
+          <span class="ml-3 text-xl">Titan URL</span>
+        </a>
+        <nav
+          class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-700	flex flex-wrap items-center text-base justify-center">
+          <a class="mr-5 hover:text-white" href="#home">Home</a>
+          <a class="mr-5 hover:text-white" href="#adv">Features</a>
+          <a class="mr-5 hover:text-white" href="#shortener">Shorten</a>
+          <a class="mr-5 hover:text-white" href="#abt">About</a>
+        </nav>
+      </div>
+    </header>
+  </div>
+
+  <main>
+    <div>
+      <img id="myVideo" src="../static/images/bg.jpg" alt="">
     </div>
-    <!-- <nav id="navbar">
-        <ul>
-            <li><a href="/">Titan URL</a></li>
-            <li><a class="transition" href="#home">Home</a></li>
-            <li><a class="transition" href="#features">Features</a></li>
-            <li><a class="transition" href="#shorten">Shorten URL</a></li>
-            <li><a class="transition" href="#about">About Us</a></li>
-        </ul>
-    </nav> -->
 
+    <section id="shortener" class="text-gray-400 bg-gray-900 body-font">
+      <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
+        <div
+          class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+          <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">Enter your URL</h1>
+          <p class="mb-8 leading-relaxed">Shorten URL with ease!</p>
+          <div class="flex w-full md:justify-start justify-center items-end">
+            <div class="relative mr-4 md:w-full lg:w-full xl:w-1/2 w-2/4">
+              <label for="hero-field" class="leading-7 text-sm text-gray-400"></label>
+              <div class="form">
+              </div><input type="text" id="original-url" name="original-url"
+                class="w-full bg-gray-800 rounded bg-opacity-40 border border-gray-700 focus:ring-2 focus:ring-red-900 focus:bg-transparent focus:border-red-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                placeholder="Enter the URL">
 
-    <main>
-        <!-- <section id="home">
-            <div class="head-container">
+              <section id="shortener" class="text-gray-400 bg-gray-900 body-font">
+                <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
+                  <div
+                    class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+                    <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">Enter your URL</h1>
+                    <p class="mb-8 leading-relaxed">Shorten URL with ease!</p>
+                    <div class="flex w-full md:justify-start justify-center items-end">
+                      <div class="relative mr-4 md:w-full lg:w-full xl:w-1/2 w-2/4">
+                        <label for="hero-field" class="leading-7 text-sm text-gray-400"></label>
+                        <div class="form">
+                          <form action="/shorten" method="get">
+                        </div><input type="text" id="original-url" name="original-url"
+                          class="w-full bg-gray-800 rounded bg-opacity-40 border border-gray-700 focus:ring-2 focus:ring-red-900 focus:bg-transparent focus:border-red-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                          placeholder="Enter the URL">
+                      </div>
+                      <input type="submit"
+                        class="inline-flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg"
+                        value="Shorten">
+                      </form>
 
-                <h1 class="h-primary underline center" id="title">Welcome to Titan URL </h1>
-    
-                <p class="p-primary center" id="title-text">A modern URL shortener - shorten those long URLs!</p>
-    
-                <div class="home-buttons">
-                    <button class="home-button btn center transition" id="homebtn-1">
-                        <h2 class="p-primary underline center"> <a href="#features">Features</a> </h2>
-                    </button>
-        
-                    <button class="home-button btn center transition" id="homebtn-2">
-                        <h2 class="p-primary underline center"><a href="#shorten">Shorten URLs</a> </h2>
-                    </button>
+                      <!-- <button class="inline-flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg">Button</button> -->
+                    </div>
+
+                  </div>
+                  <br>
+                  <div display="block">
+                    <input type="text" id="alias" name="alias-type"
+                      class="w-full bg-gray-800 rounded bg-opacity-40 border border-gray-700 focus:ring-2 focus:ring-red-900 focus:bg-transparent focus:border-red-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                      placeholder="(Optional) Alias type">
+                    <br>
+                    <input type="text" id="slug" name="slug"
+                      class="w-full bg-gray-800 rounded bg-opacity-40 border border-gray-700 focus:ring-2 focus:ring-red-900 focus:bg-transparent focus:border-red-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                      placeholder="(Optional) Alias">
+                  </div>
+                  <br>
+                  <br>
+                  <button id="shortenBtn"
+                    class="inline-flex text-white bg-red-500 border-1 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg">
+                    Shorten </button>
                 </div>
+
             </div>
-        </section> -->
-        <div>
-            <img id="myVideo" src="../static/images/bg.jpg" alt="">
+            <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
+              <img class="object-cover object-center rounded" alt="hero" src="../static/images/skull.png">
+            </div>
+          </div>
+          <div class="result">
+            <h2 class="leading-relaxed mb-8" id="result-url">
+              The shortened URL will appear here.
+            </h2>
+            <button
+              class="inline-flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg"
+              id="copyBtn">Copy</button>
+          </div>
+
+    </section>
+    <br>
+    <br>
+    <section id='home' class="text-gray-400 bg-gray-900 body-font">
+      <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
+        <img class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="hero"
+          src="../static/images/logomain.png">
+        <div class="text-center lg:w-2/3 w-full">
+          <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">Titan-URL</h1>
+          <p class="leading-relaxed mb-8">A modern URL shortener - shorten those long URLs!</p>
+          <div class="flex justify-center">
+            <button
+              class="inline-flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg"><a
+                href="#adv">Features</a></button>
+            <button
+              class="ml-4 inline-flex text-gray-400 bg-gray-800 border-0 py-2 px-6 focus:outline-none hover:bg-gray-700 hover:text-white rounded text-lg"><a
+                href="#shortener">Shorten URL</a></button>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <br>
+    <hr>
+    <br>
+
+    <section id='adv' class="text-gray-400 bg-gray-900 body-font">
+      <div class="container px-5 py-24 mx-auto">
+        <div class="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-800 sm:flex-row flex-col">
+          <div
+            class="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full text-red-400 bg-gray-800 flex-shrink-0">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              class="sm:w-16 sm:h-16 w-10 h-10" viewBox="0 0 24 24">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+            </svg>
+          </div>
+          <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
+            <h2 class="text-white text-lg title-font font-medium mb-2"><strong>FOSS</strong></h2>
+            <p class="leading-relaxed text-base">Titan URL is completely free and open source. The source code can be
+              found on <a href="https://github.com/Shravan-1908/titan-url" target="_blank"
+                rel="noopener noreferrer">GitHub</a>.</p>
+          </div>
+        </div>
+        <div class="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-800 sm:flex-row flex-col">
+          <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
+            <h2 class="text-white text-lg title-font font-medium mb-2">Custom and random aliases</h2>
+            <p class="leading-relaxed text-base">You can set the shortened URL aliases to custom as well as random ones.
+              (Coming soon)</p>
+          </div>
+          <div
+            class="sm:w-32 order-first sm:order-none sm:h-32 h-20 w-20 sm:ml-10 inline-flex items-center justify-center rounded-full text-red-400 bg-gray-800 flex-shrink-0">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              class="sm:w-16 sm:h-16 w-10 h-10" viewBox="0 0 24 24">
+              <circle cx="6" cy="6" r="3"></circle>
+              <circle cx="6" cy="18" r="3"></circle>
+              <path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="flex items-center lg:w-3/5 mx-auto sm:flex-row flex-col">
+          <div
+            class="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full text-red-400 bg-gray-800 flex-shrink-0">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              class="sm:w-16 sm:h-16 w-10 h-10" viewBox="0 0 24 24">
+              <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
+            <h2 class="text-white text-lg title-font font-medium mb-2">No Sign Up</h2>
+            <p class="leading-relaxed text-base">You dont need to setup an account to use Titan URL. Just enter the url
+              and a few clicks.</p>
+          </div>
+        </div>
+        <button
+          class="flex mx-auto mt-20 text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg">
+          <a href="https://github.com/Shravan-1908/titan-url">GitHub Repo</a>
+        </button>
+      </div>
+    </section>
+
+    </section>
+    <br>
+    <hr>
+    <br>
+    <section id='home' class="text-gray-400 bg-gray-900 body-font">
+      <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
+        <img class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="hero"
+          src="../static/images/logomain.png">
+        <div class="text-center lg:w-2/3 w-full">
+          <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">Titan-URL</h1>
+          <p class="leading-relaxed mb-8">A modern URL shortener - shorten those long URLs!</p>
+          <div class="flex justify-center">
+            <button
+              class="inline-flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg"><a
+                href="#adv">Features</a></button>
+            <button
+              class="ml-4 inline-flex text-gray-400 bg-gray-800 border-0 py-2 px-6 focus:outline-none hover:bg-gray-700 hover:text-white rounded text-lg"><a
+                href="#shortener">Shorten URL</a></button>
+          </div>
+        </div>
+      </div>
+    </section>
 
 
-        <section id="shortener" class="text-gray-400 bg-gray-900 body-font">
-            <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-              <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-                <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">Enter your URL</h1>
-                <p class="mb-8 leading-relaxed">Shorten URL with ease!</p>
-                <div class="flex w-full md:justify-start justify-center items-end">
-                  <div class="relative mr-4 md:w-full lg:w-full xl:w-1/2 w-2/4">
-                    <label for="hero-field" class="leading-7 text-sm text-gray-400"></label>
-                    <div class="form">
-                        <form action="/shorten" method="get">
-                        </div><input type="text" id="original-url" name="original-url" class="w-full bg-gray-800 rounded bg-opacity-40 border border-gray-700 focus:ring-2 focus:ring-red-900 focus:bg-transparent focus:border-red-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" placeholder="Enter the URL">
+    <br>
+    <hr>
+    <br>
+
+    <section id='adv' class="text-gray-400 bg-gray-900 body-font">
+      <div class="container px-5 py-24 mx-auto">
+        <div class="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-800 sm:flex-row flex-col">
+          <div
+            class="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full text-red-400 bg-gray-800 flex-shrink-0">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              class="sm:w-16 sm:h-16 w-10 h-10" viewBox="0 0 24 24">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+            </svg>
+          </div>
+          <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
+            <h2 class="text-white text-lg title-font font-medium mb-2"><strong>FOSS</strong></h2>
+            <p class="leading-relaxed text-base">Titan URL is completely free and open source. The source code can be
+              found on <a href="https://github.com/Shravan-1908/titan-url" target="_blank"
+                rel="noopener noreferrer">GitHub</a>.</p>
+          </div>
+        </div>
+        <div class="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-800 sm:flex-row flex-col">
+          <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
+            <h2 class="text-white text-lg title-font font-medium mb-2">Custom and random aliases</h2>
+            <p class="leading-relaxed text-base">You can set the shortened URL aliases to custom as well as random ones.
+              (Coming soon)</p>
+          </div>
+          <div
+            class="sm:w-32 order-first sm:order-none sm:h-32 h-20 w-20 sm:ml-10 inline-flex items-center justify-center rounded-full text-red-400 bg-gray-800 flex-shrink-0">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              class="sm:w-16 sm:h-16 w-10 h-10" viewBox="0 0 24 24">
+              <circle cx="6" cy="6" r="3"></circle>
+              <circle cx="6" cy="18" r="3"></circle>
+              <path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="flex items-center lg:w-3/5 mx-auto sm:flex-row flex-col">
+          <div
+            class="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full text-red-400 bg-gray-800 flex-shrink-0">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              class="sm:w-16 sm:h-16 w-10 h-10" viewBox="0 0 24 24">
+              <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
+            <h2 class="text-white text-lg title-font font-medium mb-2">No Sign Up</h2>
+            <p class="leading-relaxed text-base">You dont need to setup an account to use Titan URL. Just enter the url
+              and a few clicks.</p>
+          </div>
+        </div>
+        <button
+          class="flex mx-auto mt-20 text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg">
+          <a href="https://github.com/Shravan-1908/titan-url">GitHub Repo</a>
+        </button>
+      </div>
+    </section>
+
+    <br>
+    <br>
+
+    <section id="abt" class="text-gray-400 bg-gray-900 body-font">
+      <div class="container px-5 py-24 mx-auto">
+        <div class="flex flex-col text-center w-full mb-20">
+          <h1 class="text-2xl font-medium title-font mb-4 text-white tracking-widest">OUR TEAM</h1>
+          <p class="lg:w-2/3 mx-auto leading-relaxed text-base">This is our team <br><br> Contrbute to <a
+              href="https://github.com/Shravan-1908/titan-url">titan-url github repo</a> to make yourself one of us!</p>
+        </div>
+        <div class="flex flex-wrap -m-4">
+          <div class="p-4 lg:w-1/2">
+            <div
+              class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
+              <img alt="team" class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4"
+                src="https://avatars.githubusercontent.com/u/69118069?v=4">
+              <div class="flex-grow sm:pl-8">
+                <h2 class="title-font font-medium text-lg text-white"><a href="https://github.com/Shravan-1908/">Shravan
+                    M. Asati</a> </h2>
+                <h3 class="text-gray-500 mb-3">Head Developer</h3>
+                <p class="mb-4">A high school student interested in programming! </p>
+
+                <section class="text-gray-400 bg-gray-900 body-font">
+                  <div class="container px-5 py-24 mx-auto">
+                    <h1 class="text-3xl font-medium title-font text-white mb-12 text-center">User Reviews</h1>
+                    <div class="flex flex-wrap -m-4">
+                      <div class="p-4 md:w-1/2 w-full">
+                        <div class="h-full bg-gray-800 bg-opacity-40 p-8 rounded">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                            class="block w-5 h-5 text-gray-500 mb-4" viewBox="0 0 975.036 975.036">
+                            <path
+                              d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z">
+                            </path>
+                          </svg>
+                          <p class="leading-relaxed mb-6">This website is amazing. It works great. Hitherto I used
+                            Bit.ly to shorten URL but now I’ll use TitanURL as it is one of the best and most practical
+                            product of our community. <br><br>Keep it up!
+                          </p>
+                          <a class="inline-flex items-center">
+                            <img alt="testimonial"
+                              src="https://forum.aistudent.community/user_avatar/forum.aistudent.community/prasoon_jha/120/638_2.png"
+                              class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
+                            <span class="flex-grow flex flex-col pl-4">
+                              <span class="title-font font-medium text-white">Prasoon Jha</span>
+                              <span class="text-gray-500 text-sm">USER</span>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="p-4 md:w-1/2 w-full">
+                        <div class="h-full bg-gray-800 bg-opacity-40 p-8 rounded">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                            class="block w-5 h-5 text-gray-500 mb-4" viewBox="0 0 975.036 975.036">
+                            <path
+                              d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z">
+                            </path>
+                          </svg>
+                          <p class="leading-relaxed mb-6">It is a good replacement of bitly as no limits and no need to
+                            create an account, it's UI is too good!</p>
+                          <a class="inline-flex items-center">
+                            <img alt="testimonial"
+                              src="https://forum.aistudent.community/user_avatar/forum.aistudent.community/srinidhi_vishal_chej/120/985_2.png"
+                              class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
+                            <span class="flex-grow flex flex-col pl-4">
+                              <span class="title-font font-medium text-white">Srinidhi Vishal Chej</span>
+                              <span class="text-gray-500 text-sm">USER</span>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
                     </div>
-                        <input type="submit" class="inline-flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg" value="Shorten">
-                        </form>
-                    
-                  <!-- <button class="inline-flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg">Button</button> -->
-                </div>
-                
-              </div>
-              <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-                <img class="object-cover object-center rounded" alt="hero" src="../static/images/skull.png">
+                  </div>
+                </section>
+
+                <br>
+                <br>
+
+                <section id="abt" class="text-gray-400 bg-gray-900 body-font">
+                  <div class="container px-5 py-24 mx-auto">
+                    <div class="flex flex-col text-center w-full mb-20">
+                      <h1 class="text-2xl font-medium title-font mb-4 text-white tracking-widest">OUR TEAM</h1>
+                      <p class="lg:w-2/3 mx-auto leading-relaxed text-base">This is our team <br><br> Contrbute to <a
+                          href="https://github.com/Shravan-1908/titan-url">titan-url github repo</a> to make yourself
+                        one of us!</p>
+                    </div>
+                    <div class="flex flex-wrap -m-4">
+                      <div class="p-4 lg:w-1/2">
+                        <div
+                          class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
+                          <img alt="team"
+                            class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4"
+                            src="https://avatars.githubusercontent.com/u/69118069?v=4">
+                          <div class="flex-grow sm:pl-8">
+                            <h2 class="title-font font-medium text-lg text-white"><a
+                                href="https://github.com/Shravan-1908/">Shravan M. Asati</a> </h2>
+                            <h3 class="text-gray-500 mb-3">Head Developer</h3>
+                            <p class="mb-4">A high school student passionate about programming! </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="p-4 lg:w-1/2">
+                        <div
+                          class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
+                          <img alt="team"
+                            class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4"
+                            src="https://avatars.githubusercontent.com/u/76429451?v=4">
+                          <div class="flex-grow sm:pl-8">
+                            <h2 class="title-font font-medium text-lg text-white">Arghya Sarkar</h2>
+                            <h3 class="text-gray-500 mb-3">UI Designer</h3>
+                            <p class="mb-4">A student and an aspiring Data Scientist having deep interest in Machine
+                              Learning, Data Science and Web Development</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
               </div>
             </div>
-            <div class="result">
-                <h2 class="leading-relaxed mb-8" id="result-url">
-                    {{ URL }}
-                </h2>
-                <button class="inline-flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg" id="copyBtn">Copy</button>
-            </div>
-            {% if scroll == "yes" %}
-                <script>
-                    document.getElementById('result-url').scrollIntoView();
-                </script>
-            {% endif %}
-
-
-          </section>
-          <br>
-          <hr>
-          <br>
-        <section id='home' class="text-gray-400 bg-gray-900 body-font">
-            <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
-              <img class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="hero" src="../static/images/logomain.png">
-              <div class="text-center lg:w-2/3 w-full">
-                <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">Titan-URL</h1>
-                <p class="leading-relaxed mb-8">A modern URL shortener - shorten those long URLs!</p>
-                <div class="flex justify-center">
-                  <button class="inline-flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg"><a href="#adv">Features</a></button>
-                  <button class="ml-4 inline-flex text-gray-400 bg-gray-800 border-0 py-2 px-6 focus:outline-none hover:bg-gray-700 hover:text-white rounded text-lg"><a href="#shortener">Shorten URL</a></button>
+            <div class="p-4 lg:w-1/2">
+              <div
+                class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
+                <img alt="team" class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4"
+                  src="https://avatars.githubusercontent.com/u/76429451?v=4">
+                <div class="flex-grow sm:pl-8">
+                  <h2 class="title-font font-medium text-lg text-white">Arghya Sarkar</h2>
+                  <h3 class="text-gray-500 mb-3">UI Designer</h3>
+                  <p class="mb-4">A student and an aspiring Data Scientist having deep interest in Machine Learning,
+                    Data
+                    Science and Web Development</p>
                 </div>
               </div>
             </div>
-          </section>
-          
+          </div>
+        </div>
+      </div>
+    </section>
+    <br>
+    <br>
+    <footer class="text-gray-400 bg-gray-900 body-font">
+      <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+        <a class="flex title-font font-medium items-center md:justify-start justify-center text-white">
+          <img src="../static/images/skull.png" alt="" width="20">
+          <span class="ml-3 text-xl">Titan URL</span>
+        </a>
+        <p class="text-sm text-gray-400 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-800 sm:py-2 sm:mt-0 mt-4">©
+          2021
+          Titan-URL —
+          <a href="https://github.com/Shravan-1908/titan-url" class="text-gray-500 ml-1" target="_blank"
+            rel="noopener noreferrer">@shravan-1908</a>
+        </p>
+        <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+          <a class="text-gray-400">
+            <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
+              viewBox="0 0 24 24">
+              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+            </svg>
+          </a>
+          <a class="ml-3 text-gray-400">
+            <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
+              viewBox="0 0 24 24">
+              <path
+                d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z">
+              </path>
+            </svg>
+          </a>
+          <a class="ml-3 text-gray-400">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              class="w-5 h-5" viewBox="0 0 24 24">
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+            </svg>
+          </a>
+          <a class="ml-3 text-gray-400">
+            <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
+              <path stroke="none"
+                d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+              <circle cx="4" cy="4" r="2" stroke="none"></circle>
+            </svg>
+          </a>
+        </span>
+      </div>
+    </footer>
+  </main>
 
-            <br>
-            <hr>
-            <br>
-            
-            <section id='adv' class="text-gray-400 bg-gray-900 body-font">
-                <div class="container px-5 py-24 mx-auto">
-                  <div class="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-800 sm:flex-row flex-col">
-                    <div class="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full text-red-400 bg-gray-800 flex-shrink-0">
-                      <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="sm:w-16 sm:h-16 w-10 h-10" viewBox="0 0 24 24">
-                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                      </svg>
-                    </div>
-                    <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
-                      <h2 class="text-white text-lg title-font font-medium mb-2"><strong>FOSS</strong></h2>
-                      <p class="leading-relaxed text-base">Titan URL is completely free and open source. The source code can be found on <a href="https://github.com/Shravan-1908/titan-url" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
-                    </div>
-                  </div>
-                  <div class="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-800 sm:flex-row flex-col">
-                    <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
-                      <h2 class="text-white text-lg title-font font-medium mb-2">Custom and random aliases</h2>
-                      <p class="leading-relaxed text-base">You can set the shortened URL aliases to custom as well as random ones. (Coming soon)</p>
-                    </div>
-                    <div class="sm:w-32 order-first sm:order-none sm:h-32 h-20 w-20 sm:ml-10 inline-flex items-center justify-center rounded-full text-red-400 bg-gray-800 flex-shrink-0">
-                      <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="sm:w-16 sm:h-16 w-10 h-10" viewBox="0 0 24 24">
-                        <circle cx="6" cy="6" r="3"></circle>
-                        <circle cx="6" cy="18" r="3"></circle>
-                        <path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"></path>
-                      </svg>
-                    </div>
-                  </div>
-                  <div class="flex items-center lg:w-3/5 mx-auto sm:flex-row flex-col">
-                    <div class="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full text-red-400 bg-gray-800 flex-shrink-0">
-                      <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="sm:w-16 sm:h-16 w-10 h-10" viewBox="0 0 24 24">
-                        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                      </svg>
-                    </div>
-                    <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
-                      <h2 class="text-white text-lg title-font font-medium mb-2">No Sign Up</h2>
-                      <p class="leading-relaxed text-base">You dont need to setup an account to use Titan URL. Just enter the url and a few clicks.</p>
-                    </div>
-                  </div>
-                  <button class="flex mx-auto mt-20 text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg">
-                    <a href="https://github.com/Shravan-1908/titan-url">GitHub Repo</a>  
-                    </button>
-                </div>
-              </section>
-
-
-          <br>
-          <br>
-
-
-          <section class="text-gray-400 bg-gray-900 body-font">
-            <div class="container px-5 py-24 mx-auto">
-              <h1 class="text-3xl font-medium title-font text-white mb-12 text-center">User Reviews</h1>
-              <div class="flex flex-wrap -m-4">
-                <div class="p-4 md:w-1/2 w-full">
-                  <div class="h-full bg-gray-800 bg-opacity-40 p-8 rounded">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="block w-5 h-5 text-gray-500 mb-4" viewBox="0 0 975.036 975.036">
-                      <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
-                    </svg>
-                    <p class="leading-relaxed mb-6">This website is amazing. It works great. Hitherto I used Bit.ly to shorten URL but now I’ll use TitanURL as it is one of the best and most practical product of our community. <br><br>Keep it up!
-                      </p>
-                    <a class="inline-flex items-center">
-                      <img alt="testimonial" src="https://forum.aistudent.community/user_avatar/forum.aistudent.community/prasoon_jha/120/638_2.png" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
-                      <span class="flex-grow flex flex-col pl-4">
-                        <span class="title-font font-medium text-white">Prasoon Jha</span>
-                        <span class="text-gray-500 text-sm">USER</span>
-                      </span>
-                    </a>
-                  </div>
-                </div>
-                <div class="p-4 md:w-1/2 w-full">
-                  <div class="h-full bg-gray-800 bg-opacity-40 p-8 rounded">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="block w-5 h-5 text-gray-500 mb-4" viewBox="0 0 975.036 975.036">
-                      <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
-                    </svg>
-                    <p class="leading-relaxed mb-6">It is a good replacement of bitly as no limits and no need to create an account, it's UI is too good!</p>
-                    <a class="inline-flex items-center">
-                      <img alt="testimonial" src="https://forum.aistudent.community/user_avatar/forum.aistudent.community/srinidhi_vishal_chej/120/985_2.png" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
-                      <span class="flex-grow flex flex-col pl-4">
-                        <span class="title-font font-medium text-white">Srinidhi Vishal Chej</span>
-                        <span class="text-gray-500 text-sm">USER</span>
-                      </span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        
-          <br>
-          <br>
-
-        <section id="abt" class="text-gray-400 bg-gray-900 body-font">
-            <div class="container px-5 py-24 mx-auto">
-              <div class="flex flex-col text-center w-full mb-20">
-                <h1 class="text-2xl font-medium title-font mb-4 text-white tracking-widest">OUR TEAM</h1>
-                <p class="lg:w-2/3 mx-auto leading-relaxed text-base">This is our team <br><br> Contrbute to <a href="https://github.com/Shravan-1908/titan-url">titan-url github repo</a> to make yourself one of us!</p>
-              </div>
-              <div class="flex flex-wrap -m-4">
-                <div class="p-4 lg:w-1/2">
-                  <div class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
-                    <img alt="team" class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4" src="https://avatars.githubusercontent.com/u/69118069?v=4">
-                    <div class="flex-grow sm:pl-8">
-                      <h2 class="title-font font-medium text-lg text-white"><a href="https://github.com/Shravan-1908/">Shravan M. Asati</a> </h2>
-                      <h3 class="text-gray-500 mb-3">Head Developer</h3>
-                      <p class="mb-4">A high school student interested in programming! </p>
-                    </div>
-                  </div>
-                </div>
-                <div class="p-4 lg:w-1/2">
-                  <div class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
-                    <img alt="team" class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4" src="https://avatars.githubusercontent.com/u/76429451?v=4">
-                    <div class="flex-grow sm:pl-8">
-                      <h2 class="title-font font-medium text-lg text-white">Arghya Sarkar</h2>
-                      <h3 class="text-gray-500 mb-3">UI Designer</h3>
-                      <p class="mb-4">A student and an aspiring Data Scientist having deep interest in Machine Learning, Data Science and Web Development</p>
-                    </div>
-                  </div>
-                </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          <br>
-          <br>
-          <footer class="text-gray-400 bg-gray-900 body-font">
-            <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
-              <a class="flex title-font font-medium items-center md:justify-start justify-center text-white">
-                <img src="../static/images/skull.png" alt="" width="20">
-                <span class="ml-3 text-xl">Tailblocks</span>
-              </a>
-              <p class="text-sm text-gray-400 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-800 sm:py-2 sm:mt-0 mt-4">© 2021 Titan-URL —
-                <a href="https://github.com/Shravan-1908/titan-url" class="text-gray-500 ml-1" target="_blank" rel="noopener noreferrer">@shravan-1908</a>
-              </p>
-              <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
-                <a class="text-gray-400">
-                  <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
-                  </svg>
-                </a>
-                <a class="ml-3 text-gray-400">
-                  <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                    <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
-                  </svg>
-                </a>
-                <a class="ml-3 text-gray-400">
-                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-                    <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
-                  </svg>
-                </a>
-                <a class="ml-3 text-gray-400">
-                  <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
-                    <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
-                    <circle cx="4" cy="4" r="2" stroke="none"></circle>
-                  </svg>
-                </a>
-              </span>
-            </div>
-
-          </footer>
-    </main>
+  </footer>
+  </main>
 
 
-    <!-- <script src=" {{ url_for('static', filename='scripts/script.js') }} "> </script> -->
-    <!-- <script src="../static/scripts/script.js"></script> -->
-    <script src="{{ url_for('static', filename='scripts/script.js') }}"></script>
+  <script src="{{ url_for('static', filename='scripts/script.js') }}"></script>
 </body>
 
 </html>
