@@ -34,15 +34,16 @@ async function shorten() {
     console.log("shortening...");
     let requestData = getRequestData()
 
-    let data = new FormData()
-    data.append("original-url", requestData["original-url"])
-    data.append("alias-type", requestData["alias-type"])
-    data.append("slug", requestData["slug"])
+    console.log(typeof JSON.stringify(requestData));
+    console.log(JSON.stringify(requestData));
 
     await fetch("/shorten", {
         method: 'POST',
         cache: 'no-cache',
-        body: data,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestData),
     })
 
     .then(response => {return response.json()})

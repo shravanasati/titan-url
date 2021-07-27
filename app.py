@@ -41,8 +41,17 @@ def shorten():
         if request.method == "GET":
             return render_template("index.html")
 
-        url = request.form.get("original-url")
-        alias_type = request.form.get("alias-type")
+        data = request.json
+        if data is None:
+            return jsonify(
+                {
+                    "ok": False,
+                    "message": "Please provide a valid JSON object."
+                }
+            )
+
+        url = data.get("original-url")
+        alias_type = data.get("alias-type")
         print("URL", url)
         print("Alias Type", alias_type)
         if url is None or alias_type is None:
@@ -66,7 +75,7 @@ def shorten():
                 slug_used = is_slug_used(slug)
 
         elif alias_type == "custom":
-            slug = request.form.get("slug")
+            slug = data.get("slug")
             if slug is None:
                 return jsonify({
                     "ok": False,
