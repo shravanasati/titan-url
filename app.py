@@ -6,7 +6,6 @@ from requests.models import PreparedRequest
 from requests.exceptions import MissingSchema
 
 app = Flask(__name__)
-app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 
 def check_url(url: str) -> bool:
@@ -129,7 +128,3 @@ def get(slug):
         return render_template("404.html")
     finally:
         conn.close()
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
