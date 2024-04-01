@@ -6,16 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Titan URL | Shorten your URLs</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles/utils.css') }}">
 
-
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
-  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="shortcut icon"
-    href="https://lh3.googleusercontent.com/-31-codqBgas/YLe3EgGX5VI/AAAAAAAAAd0/UQ06BPBa0Iwwy7Yvg20kyKsJGI3Kzl21ACLcBGAsYHQ/tlog.jpeg"
-    type="image/jpg">
   <meta name="google-site-verification" content="aPqwSSs36MAE8EUIC-kDA4gvuLH8Lfkz7CigxXypNPY" />
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,18 +17,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-  <!-- <link rel="stylesheet" href="../static/styles/utils.css"> -->
   <link rel="stylesheet" href="../static/styles/style.css">
   <link rel="shortcut icon"
     href="https://lh3.googleusercontent.com/-31-codqBgas/YLe3EgGX5VI/AAAAAAAAAd0/UQ06BPBa0Iwwy7Yvg20kyKsJGI3Kzl21ACLcBGAsYHQ/tlog.jpeg"
     type="image/jpg">
 </head>
+
 <style>
   #navlost {
     position: sticky;
     top: 0;
   }
-
 
   * {
     overflow-x: hidden;
@@ -45,6 +35,7 @@
 </style>
 
 <body>
+  <!-- * NAVBAR -->
   <div id="navlost">
     <header class="text-gray-400 bg-gray-600 body-font">
       <div class="container mx-auto flex flex-wrap p-3 flex-col md:flex-row items-center">
@@ -63,11 +54,13 @@
     </header>
   </div>
 
+  <!-- * CONTAINER -->
   <main>
     <div>
       <img id="myVideo" src="../static/images/bg.jpg" alt="">
     </div>
 
+    <!-- * SHORTENER -->
     <section id="shortener" class="text-gray-400 bg-gray-900 body-font">
       <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
         <div
@@ -78,34 +71,36 @@
             <div class="relative mr-4 md:w-full lg:w-full xl:w-1/2 w-2/4">
               <label for="hero-field" class="leading-7 text-sm text-gray-400"></label>
               <div class="form">
-                <form action="/shorten" method="get">
-              </div><input type="text" id="original-url" name="original-url"
+                <form>
+              </div><input type="text" id="original-url" name="original-url" autocomplete="off"
                 class="w-full bg-gray-800 rounded bg-opacity-40 border border-gray-700 focus:ring-2 focus:ring-red-900 focus:bg-transparent focus:border-red-500 text-base outline-none text-gray-100 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 placeholder="Enter the URL">
-              <input type="text" id="slug" name="slug"
+              <input type="text" id="alias" name="alias" autocomplete="off"
                 class="w-full bg-gray-800 rounded bg-opacity-40 border border-gray-700 focus:ring-2 focus:ring-red-900 focus:bg-transparent focus:border-red-500 text-base outline-none text-gray-100 py-2 px-3 leading-8 my-4 transition-colors duration-200 ease-in-out"
                 placeholder="(Optional) Alias">
               <input type="submit"
                 class="inline-flex text-white bg-red-500 border-0 py-3 px-6 focus:outline-none my-5 hover:bg-red-600 rounded text-lg"
-                value="Shorten">
+                id="shortenBtn" value="Shorten">
             </div>
             <br>
             </form>
+          </div>
+          <div class="result flex items-center justify-center py-5">
+            <h2 class="leading-relaxed text-center" id="result-url">
+              The shortened URL will appear here.
+            </h2>
+            <button
+              class="inline-flex text-white bg-red-500 border-0 py-1 px-6 focus:outline-none hover:bg-red-600 rounded text-lg mb-4"
+              id="copyBtn">Copy</button>
+          </div>
         </div>
-        <div class="result flex items-center justify-center py-5">
-          <h2 class="leading-relaxed text-center" id="result-url">
-            The shortened URL will appear here.
-          </h2>
-          <button
-            class="inline-flex text-white bg-red-500 border-0 py-1 px-6 focus:outline-none hover:bg-red-600 rounded text-lg mb-4"
-            id="copyBtn">Copy</button>
-        </div>
-      </div>
 
 
     </section>
     <br>
     <br>
+
+    <!-- * HOME  -->
     <section id='home' class="text-gray-400 bg-gray-900 body-font">
       <div class="container mx-auto flex px-5 py-3 items-center justify-center flex-col">
         <img class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="hero"
@@ -129,6 +124,7 @@
     <hr>
     <br>
 
+    <!-- * FEATURES -->
     <section id='adv' class="text-gray-400 bg-gray-900 body-font">
       <div class="container px-5 py-24 mx-auto">
         <div class="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-800 sm:flex-row flex-col">
@@ -150,7 +146,7 @@
           <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
             <h2 class="text-white text-lg title-font font-medium mb-2">Custom and random aliases</h2>
             <p class="leading-relaxed text-base">You can set the shortened URL aliases to custom as well as random ones.
-              (Coming soon)</p>
+            </p>
           </div>
           <div
             class="sm:w-32 order-first sm:order-none sm:h-32 h-20 w-20 sm:ml-10 inline-flex items-center justify-center rounded-full text-red-400 bg-gray-800 flex-shrink-0">
