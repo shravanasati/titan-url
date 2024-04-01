@@ -1,11 +1,16 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/shravanasati/stellapy/master/schema.json 
 browser: firefox
 include_only: []
-poll_interval: 500
-browser_wait_interval: 1000
+poll_interval: 200
+browser_wait_interval: 500
 follow_symlinks: false
 scripts:
 - name: default
   url: 'localhost:5000'
   command: flask --app app run
   shell: false
+- name: server
+  url: ''
+  command: flask --app app run
+  shell: false
+

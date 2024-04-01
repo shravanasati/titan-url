@@ -57,7 +57,7 @@
           <a class="mr-5 hover:text-white" href="#home">Home</a>
           <a class="mr-5 hover:text-white" href="#adv">Features</a>
           <a class="mr-5 hover:text-white" href="#shortener">Shorten</a>
-          <a class="mr-5 hover:text-white" href="#abt">About</a>
+          <a class="mr-5 hover:text-white" href="https://github.com/shravanasati/titan-url" target="_blank">GitHub</a>
         </nav>
       </div>
     </header>
@@ -80,51 +80,34 @@
               <div class="form">
                 <form action="/shorten" method="get">
               </div><input type="text" id="original-url" name="original-url"
-                class="w-full bg-gray-800 rounded bg-opacity-40 border border-gray-700 focus:ring-2 focus:ring-red-900 focus:bg-transparent focus:border-red-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                class="w-full bg-gray-800 rounded bg-opacity-40 border border-gray-700 focus:ring-2 focus:ring-red-900 focus:bg-transparent focus:border-red-500 text-base outline-none text-gray-100 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 placeholder="Enter the URL">
+              <input type="text" id="slug" name="slug"
+                class="w-full bg-gray-800 rounded bg-opacity-40 border border-gray-700 focus:ring-2 focus:ring-red-900 focus:bg-transparent focus:border-red-500 text-base outline-none text-gray-100 py-2 px-3 leading-8 my-4 transition-colors duration-200 ease-in-out"
+                placeholder="(Optional) Alias">
+              <input type="submit"
+                class="inline-flex text-white bg-red-500 border-0 py-3 px-6 focus:outline-none my-5 hover:bg-red-600 rounded text-lg"
+                value="Shorten">
             </div>
-            <input type="submit"
-              class="inline-flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg"
-              value="Shorten">
+            <br>
             </form>
-
-            <!-- <button class="inline-flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg">Button</button> -->
-          </div>
-
         </div>
-        <br>
-        <div display="block">
-          <input type="text" id="alias" name="alias-type"
-            class="w-full bg-gray-800 rounded bg-opacity-40 border border-gray-700 focus:ring-2 focus:ring-red-900 focus:bg-transparent focus:border-red-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-            placeholder="(Optional) Alias type">
-          <br>
-          <input type="text" id="slug" name="slug"
-            class="w-full bg-gray-800 rounded bg-opacity-40 border border-gray-700 focus:ring-2 focus:ring-red-900 focus:bg-transparent focus:border-red-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-            placeholder="(Optional) Alias">
+        <div class="result flex items-center justify-center py-5">
+          <h2 class="leading-relaxed text-center" id="result-url">
+            The shortened URL will appear here.
+          </h2>
+          <button
+            class="inline-flex text-white bg-red-500 border-0 py-1 px-6 focus:outline-none hover:bg-red-600 rounded text-lg mb-4"
+            id="copyBtn">Copy</button>
         </div>
-        <br>
-        <br>
-        <button id="shortenBtn"
-          class="inline-flex text-white bg-red-500 border-1 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg">
-          Shorten </button>
       </div>
 
-      </div>
-      </div>
-      <div class="result">
-        <h2 class="leading-relaxed mb-8" id="result-url">
-          The shortened URL will appear here.
-        </h2>
-        <button
-          class="inline-flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg"
-          id="copyBtn">Copy</button>
-      </div>
 
     </section>
     <br>
     <br>
     <section id='home' class="text-gray-400 bg-gray-900 body-font">
-      <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
+      <div class="container mx-auto flex px-5 py-3 items-center justify-center flex-col">
         <img class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="hero"
           src="../static/images/logomain.png">
         <div class="text-center lg:w-2/3 w-full">
