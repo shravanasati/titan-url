@@ -2,7 +2,7 @@
 
 Titan URL is a modern, free and open source URL shortener.
 
-View it here: http://titan-url.herokuapp.com.
+View it here: http://titanurl.vercel.app.
 
 <br>
 
@@ -23,7 +23,7 @@ titan-url offers a free and easy to use Rest API for integrating titan-url into 
 
 The only public endpoint is:
 ```
-POST http://titan-url.herokuapp.com/shorten
+POST http://titanurl.vercel.app/shorten
 ```
 
 The payload for the POST request must be json. The json payload must have these fields:
@@ -32,7 +32,7 @@ The payload for the POST request must be json. The json payload must have these 
 {
 	"original-url": "the url you want to shorten",
 	"alias-type": "either custom or random",
-	"slug": "custom-slug" // can be omitted if the alias-type is random
+	"alias": "custom-alias" // can be omitted if the alias-type is random
 }
 ```
 
@@ -40,7 +40,7 @@ The response will also be of json type.
 ```json
 {
 	"ok": true,
-	"message": "http://titan-url.herokuapp.com/demo"
+	"message": "http://titanurl.vercel.app/demo"
 }
 ```
 
@@ -48,7 +48,7 @@ Whether the request to the API is successfull or not, the response json schema w
 
 ## Example extensions
 
-The following apps have leveraged the titan-url API to level up their apps.
+The following apps have leveraged the titan-url API to shorten URLs.
 
-- [titan-url-cli](https://github.com/Shravan-1908/titan-url-cli) - A terminal client for titan-url written in javascript.
+- [titan-url-cli](https://github.com/shravanasati/titan-url-cli) - A terminal client for titan-url.
 - [Alfred Discord Bot](https://github.com/alvinbengeorge/Discord) - An all in one Discord bot.
