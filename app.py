@@ -51,8 +51,6 @@ def shorten():
 
         url = data.get("original-url")
         alias_type = data.get("alias-type")
-        print("URL", url)
-        print("Alias Type", alias_type)
         if url is None or alias_type is None:
             return jsonify(
                 {
@@ -91,8 +89,6 @@ def shorten():
 
         else:
             return jsonify({"ok": False, "message": "Invalid alias type!"})
-
-        print("SLUG", slug)
 
         conn = sqlite3.connect("./urls.db")
         c = conn.cursor()
