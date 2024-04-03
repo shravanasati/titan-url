@@ -32,7 +32,7 @@ def is_slug_used(slug: str) -> bool:
     """
     Returns a boolean value whether the given slug has been used or not.
     """
-    conn = psycopg2.connect("./urls.db")
+    conn = psycopg2.connect(os.environ["POSTGRES_URL"])
     c = conn.cursor()
     c.execute("CREATE TABLE IF NOT EXISTS urls(original_url text, slug text)")
     c.execute("SELECT (slug) FROM urls")
@@ -110,7 +110,7 @@ def shorten():
 
 @app.route("/<string:slug>")
 def get(slug):
-    conn = psycopg2.connect("./urls.db")
+    conn = psycopg2.connect(os.environ["POSTGRES_URL"])
     c = conn.cursor()
     c.execute("CREATE TABLE IF NOT EXISTS urls(original_url text, slug text)")
     c.execute("SELECT * FROM urls WHERE slug = :slug", {"slug": slug})
