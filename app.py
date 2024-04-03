@@ -3,15 +3,21 @@ import os
 from random import choice
 from string import ascii_letters, digits
 
-import psycopg2
+from database import db_session, init_db
+from models import URL as URLModel
+
 from dotenv import load_dotenv
 from flask import Flask, jsonify, redirect, render_template, request
 from requests.exceptions import MissingSchema
 from requests.models import PreparedRequest
 
 load_dotenv()
+init_db()
 
 app = Flask(__name__)
+app.config["POSTGRES_URL"] = os.environ["POSTGRES_URL"]
+if app.config["POSTGRES_URL"].endswith("sslmode"):
+    app.config["POSTGRES_URL"] += "=require"
 
 
 def check_url(url: str) -> bool:
@@ -32,13 +38,7 @@ def is_slug_used(slug: str) -> bool:
     """
     Returns a boolean value whether the given slug has been used or not.
     """
-    conn = psycopg2.connect(os.environ["POSTGRES_URL"])
-    c = conn.cursor()
-    c.execute("CREATE TABLE IF NOT EXISTS urls(original_url text, slug text)")
-    c.execute("SELECT (slug) FROM urls")
-    used_slugs = {i[0] for i in c.fetchall()}
-
-    return slug in used_slugs
+    return bool(db_session.query(URLModel).filter_by(slug=slug).first())
 
 
 @app.route("/shorten", methods=["GET", "POST"])
@@ -94,13 +94,9 @@ def shorten():
         else:
             return jsonify({"ok": False, "message": "Invalid alias type!"})
 
-        conn = psycopg2.connect(os.environ["POSTGRES_URL"])
-        c = conn.cursor()
-        c.execute("CREATE TABLE IF NOT EXISTS urls(original_url text, slug text)")
-        c.execute("INSERT INTO urls VALUES(:url, :slug)", {"url": url, "slug": slug})
-        conn.commit()
-        conn.close()
-
+        url_entity = URLModel(url, slug)
+        db_session.add(url_entity)
+        db_session.commit()
         return jsonify({"ok": True, "message": f"{request.host_url}{slug}"})
 
     except Exception as e:
@@ -110,15 +106,8 @@ def shorten():
 
 @app.route("/<string:slug>")
 def get(slug):
-    conn = psycopg2.connect(os.environ["POSTGRES_URL"])
-    c = conn.cursor()
-    c.execute("CREATE TABLE IF NOT EXISTS urls(original_url text, slug text)")
-    c.execute("SELECT * FROM urls WHERE slug = :slug", {"slug": slug})
-    try:
-        url = c.fetchone()[0]
-        return redirect(url)
-    except Exception as e:
-        logging.exception(e)
+    url = db_session.query(URLModel).filter_by(slug=slug).first()
+    if url:
+        return redirect(url.original_url)
+    else:
         return render_template("404.html")
-    finally:
-        conn.close()
