@@ -1,9 +1,15 @@
-from flask import Flask, render_template, request, redirect, jsonify
-import sqlite3
+import logging
+import os
 from random import choice
 from string import ascii_letters, digits
-from requests.models import PreparedRequest
+
+import psycopg2
+from dotenv import load_dotenv
+from flask import Flask, jsonify, redirect, render_template, request
 from requests.exceptions import MissingSchema
+from requests.models import PreparedRequest
+
+load_dotenv()
 
 app = Flask(__name__)
 
@@ -19,16 +25,14 @@ def check_url(url: str) -> bool:
 
 @app.route("/")
 def home():
-    return render_template(
-        "index.html", URL="The shortened URL will appear here", scroll="no"
-    )
+    return render_template("index.html")
 
 
 def is_slug_used(slug: str) -> bool:
     """
     Returns a boolean value whether the given slug has been used or not.
     """
-    conn = sqlite3.connect("./urls.db")
+    conn = psycopg2.connect("./urls.db")
     c = conn.cursor()
     c.execute("CREATE TABLE IF NOT EXISTS urls(original_url text, slug text)")
     c.execute("SELECT (slug) FROM urls")
@@ -90,7 +94,7 @@ def shorten():
         else:
             return jsonify({"ok": False, "message": "Invalid alias type!"})
 
-        conn = sqlite3.connect("./urls.db")
+        conn = psycopg2.connect(os.environ["POSTGRES_URL"])
         c = conn.cursor()
         c.execute("CREATE TABLE IF NOT EXISTS urls(original_url text, slug text)")
         c.execute("INSERT INTO urls VALUES(:url, :slug)", {"url": url, "slug": slug})
@@ -100,22 +104,21 @@ def shorten():
         return jsonify({"ok": True, "message": f"{request.host_url}{slug}"})
 
     except Exception as e:
-        print(e)
+        logging.exception(e)
         return render_template("404.html")
 
 
 @app.route("/<string:slug>")
 def get(slug):
-    conn = sqlite3.connect("./urls.db")
+    conn = psycopg2.connect("./urls.db")
     c = conn.cursor()
     c.execute("CREATE TABLE IF NOT EXISTS urls(original_url text, slug text)")
     c.execute("SELECT * FROM urls WHERE slug = :slug", {"slug": slug})
     try:
         url = c.fetchone()[0]
-        print(url)
         return redirect(url)
     except Exception as e:
-        print(e)
+        logging.exception(e)
         return render_template("404.html")
     finally:
         conn.close()
