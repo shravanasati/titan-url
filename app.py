@@ -8,7 +8,7 @@ from database import db_session, init_db
 from models import URL as URLModel
 
 from dotenv import load_dotenv
-from flask import Flask, jsonify, redirect, render_template, request
+from flask import Flask, jsonify, render_template, request
 from requests.exceptions import MissingSchema
 from requests.models import PreparedRequest
 
@@ -119,6 +119,6 @@ def shorten():
 def get(slug):
     url = db_session.query(URLModel).filter_by(slug=slug).first()
     if url:
-        return redirect(url.original_url)
+        return render_template("redirect.html", url=url.original_url)
     else:
         return render_template("404.html")

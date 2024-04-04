@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Titan URL - Redirection</title>
+</head>
+
+<body>
+	<h3>You're being redirected to <a href="{{url}}">{{url}}</a></h3>
+	<script>
+		setTimeout(() => {
+			window.location.replace("{{url}}");
+		}, 1000)
+	</script>
+</body>
+
+</html>
