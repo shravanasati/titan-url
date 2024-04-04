@@ -9,6 +9,8 @@ from models import URL as URLModel
 
 from dotenv import load_dotenv
 from flask import Flask, jsonify, render_template, request
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 from requests.exceptions import MissingSchema
 from requests.models import PreparedRequest
 
@@ -19,6 +21,14 @@ app = Flask(__name__)
 app.config["POSTGRES_URL"] = os.environ["POSTGRES_URL"]
 if app.config["POSTGRES_URL"].endswith("sslmode"):
     app.config["POSTGRES_URL"] += "=require"
+
+limiter = Limiter(
+    get_remote_address,
+    app=app,
+    headers_enabled=True,
+    storage_uri=os.environ["FLASK_LIMITER_STORAGE_URI"],
+    default_limits=["60/minute", "1/second"],
+)
 
 ALIAS_REGEX = re.compile(r"^(?=.*[A-Za-z0-9])[\w\-]{1,50}$")
 
@@ -52,19 +62,25 @@ def shorten():
 
         data = request.json
         if data is None:
-            return jsonify(
-                {"ok": False, "message": "Please provide a valid JSON object."}
-            ), 400
+            return (
+                jsonify(
+                    {"ok": False, "message": "Please provide a valid JSON object."}
+                ),
+                400,
+            )
 
         url = data.get("original-url")
         alias_type = data.get("alias-type")
         if url is None or alias_type is None:
-            return jsonify(
-                {
-                    "ok": False,
-                    "message": "Missing fields `original-url` or `alias-type`.",
-                }
-            ), 400
+            return (
+                jsonify(
+                    {
+                        "ok": False,
+                        "message": "Missing fields `original-url` or `alias-type`.",
+                    }
+                ),
+                400,
+            )
 
         if not check_url(url):
             return jsonify({"ok": False, "message": "The entered URL is invalid."}), 400
@@ -87,20 +103,26 @@ def shorten():
                 return jsonify({"ok": False, "message": "Missing field `slug`."})
 
             if not ALIAS_REGEX.match(slug):
-                return jsonify(
-                    {
-                        "ok": False,
-                        "message": "Invalid alias! It must only contain alphanumeric characters, hyphens (-), underscores (_), and not be longer than 50 characters.",
-                    }
-                ), 400
+                return (
+                    jsonify(
+                        {
+                            "ok": False,
+                            "message": "Invalid alias! It must only contain alphanumeric characters, hyphens (-), underscores (_), and not be longer than 50 characters.",
+                        }
+                    ),
+                    400,
+                )
 
             if is_slug_used(slug):
-                return jsonify(
-                    {
-                        "ok": False,
-                        "message": "This custom alias has already been used! Try another one.",
-                    }
-                ), 400
+                return (
+                    jsonify(
+                        {
+                            "ok": False,
+                            "message": "This custom alias has already been used! Try another one.",
+                        }
+                    ),
+                    400,
+                )
 
         else:
             return jsonify({"ok": False, "message": "Invalid alias type!"}), 400

@@ -7,6 +7,7 @@ contourpy==1.2.0
 cycler==0.12.1
 Deprecated==1.2.14
 Flask==3.0.1
+Flask-Limiter==3.5.1
 fonttools==4.48.1
 greenlet==3.0.3
 idna==3.6
