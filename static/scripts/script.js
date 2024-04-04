@@ -34,15 +34,17 @@ async function shorten(ev) {
     ev.preventDefault();
     console.log("shortening...");
     let requestData = getRequestData()
+    let urlText = document.querySelector("#result-url");
     if (!requestData["original-url"]) {
-        let urlText = document.querySelector("#result-url");
         urlText.innerText = "Please enter a URL.";
         urlText.scrollIntoView();
         return;
     }
-
-    console.log(typeof JSON.stringify(requestData));
-    console.log(JSON.stringify(requestData));
+    if (requestData["alias-type"] === "custom" && !requestData["alias"].match(/^(?=.*[A-Za-z0-9])[\w\-]{1,50}$/gm)) {
+        urlText.innerText = "Invalid alias! It must only contain alphanumeric characters, hyphens (-), underscores (_), and not be longer than 50 characters.";
+        urlText.scrollIntoView();
+        return;
+    }
 
     await fetch("/shorten", {
         method: 'POST',
@@ -56,13 +58,20 @@ async function shorten(ev) {
         .then(response => { return response.json() })
 
         .then(data => {
-            let urlText = document.getElementById("result-url")
             urlText.innerText = data["message"]
             urlText.scrollIntoView()
+            
+            let lenOriginal = requestData["original-url"].length;
+            let lenShortened = data["message"].length;
+            let diff = lenOriginal - lenShortened;
+            if (diff >= 0) {
+                console.log(`link shortened by ${diff / lenOriginal * 100}%`);
+            } else {
+                console.log(`link made longer by ${diff / lenOriginal * 100}%`);
+            }
         })
 
         .catch(err => {
-            let urlText = document.getElementById("result-url")
             urlText.innerText = "An error occured! Check your internet connection."
             urlText.scrollIntoView()
         })
