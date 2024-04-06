@@ -1,5 +1,23 @@
 {
-	"engines": {
-		"node": "18.x"
-	}
+  "engines": {
+    "node": "18.x"
+  },
+  "name": "titan-url",
+  "description": "Titan URL is a modern, free and open source URL shortener.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "keywords": [],
+  "author": "Shravan Asati <dev.shravan@protonmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^1.2.2"
+  }
 }
