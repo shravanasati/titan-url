@@ -4,11 +4,14 @@ from random import choice
 import re
 from string import ascii_letters, digits
 
+import sqlalchemy
+import sqlalchemy.exc
+
 from database import db_session, init_db
 from models import URL as URLModel
 
 from dotenv import load_dotenv
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, render_template, request
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from requests.exceptions import MissingSchema
@@ -63,7 +66,7 @@ def shorten():
         data = request.json
         if data is None:
             return (
-                jsonify(
+                (
                     {"ok": False, "message": "Please provide a valid JSON object."}
                 ),
                 400,
@@ -73,7 +76,7 @@ def shorten():
         alias_type = data.get("alias-type")
         if url is None or alias_type is None:
             return (
-                jsonify(
+                (
                     {
                         "ok": False,
                         "message": "Missing fields `original-url` or `alias-type`.",
@@ -83,7 +86,7 @@ def shorten():
             )
 
         if not check_url(url):
-            return jsonify({"ok": False, "message": "The entered URL is invalid."}), 400
+            return ({"ok": False, "message": "The entered URL is invalid."}), 400
 
         if alias_type == "random":
             slug = "".join(
@@ -100,11 +103,11 @@ def shorten():
         elif alias_type == "custom":
             slug = data.get("alias")
             if slug is None:
-                return jsonify({"ok": False, "message": "Missing field `slug`."})
+                return ({"ok": False, "message": "Missing field `slug`."})
 
             if not ALIAS_REGEX.match(slug):
                 return (
-                    jsonify(
+                    (
                         {
                             "ok": False,
                             "message": "Invalid alias! It must only contain alphanumeric characters, hyphens (-), underscores (_), and not be longer than 50 characters.",
@@ -115,7 +118,7 @@ def shorten():
 
             if is_slug_used(slug):
                 return (
-                    jsonify(
+                    (
                         {
                             "ok": False,
                             "message": "This custom alias has already been used! Try another one.",
@@ -125,16 +128,20 @@ def shorten():
                 )
 
         else:
-            return jsonify({"ok": False, "message": "Invalid alias type!"}), 400
+            return ({"ok": False, "message": "Invalid alias type!"}), 400
 
         url_entity = URLModel(url, slug)
         db_session.add(url_entity)
         db_session.commit()
-        return jsonify({"ok": True, "message": f"{request.host_url}{slug}"}), 200
+        return ({"ok": True, "message": f"{request.host_url}{slug}"}), 200
+
+    except sqlalchemy.exc.PendingRollbackError:
+        db_session.rollback()
+        return ({"ok": False, "message": "Unable to fulfill this request, please try again."}), 500
 
     except Exception as e:
         logging.exception(e)
-        return render_template("404.html"), 404
+        return ({"ok": False, "message": "An internal server error occured, please try again later."}), 500
 
 
 @app.route("/<string:slug>")
