@@ -80,7 +80,7 @@ async function shorten(ev) {
         })
 
         .catch(err => {
-            urlText.innerText = "An error occured! Check your internet connection."
+            urlText.innerText = "An error occured! Please try again later."
             shortenBtn.scrollIntoView()
         })
 
