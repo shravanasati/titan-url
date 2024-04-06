@@ -2,7 +2,7 @@
 
 Titan URL is a modern, free and open source URL shortener.
 
-View it here: http://titanurl.vercel.app.
+View it here: https://titanurl.vercel.app.
 
 <br>
 
@@ -23,7 +23,7 @@ The API is rate-limited to 60 reqs/min and 1 req/s.
 
 The only public endpoint is:
 ```
-POST http://titanurl.vercel.app/shorten
+POST https://titanurl.vercel.app/shorten
 ```
 
 The payload for the POST request must be json. The json payload must have these fields:
@@ -40,7 +40,7 @@ The response will also be of json type.
 ```json
 {
 	"ok": true,
-	"message": "http://titanurl.vercel.app/demo"
+	"message": "https://titanurl.vercel.app/demo"
 }
 ```
 
