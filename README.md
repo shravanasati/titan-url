@@ -19,7 +19,7 @@ View it here: https://titanurl.vercel.app.
 
 titan-url offers a free and easy to use Rest API for integrating titan-url into your application. And no API key is required! 
 
-The API is rate-limited to 60 reqs/min and 1 req/s.
+The API is rate-limited to 300 reqs/min and 6 req/s.
 
 The only public endpoint is:
 ```

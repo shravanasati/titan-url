@@ -30,7 +30,7 @@ limiter = Limiter(
     app=app,
     headers_enabled=True,
     storage_uri=os.environ["FLASK_LIMITER_STORAGE_URI"],
-    default_limits=["60/minute", "1/second"],
+    default_limits=["300/minute", "6/second"],
 )
 
 ALIAS_REGEX = re.compile(r"^(?=.*[A-Za-z0-9])[\w\-]{1,50}$")
