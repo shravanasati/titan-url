@@ -8,13 +8,11 @@ scripts:
 - name: default
   url: 'localhost:5000'
   command: 
-    - npm run build
     - flask --app app run
   shell: false
 - name: server
   url: ''
   command: 
-    - npm run build
     - flask --app app run
   shell: false
 
