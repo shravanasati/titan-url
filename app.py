@@ -11,11 +11,12 @@ from database import db_session, init_db
 from models import URL as URLModel
 
 from dotenv import load_dotenv
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from requests.exceptions import MissingSchema
 from requests.models import PreparedRequest
+import segno
 
 load_dotenv()
 init_db()
@@ -66,9 +67,7 @@ def shorten():
         data = request.json
         if data is None:
             return (
-                (
-                    {"ok": False, "message": "Please provide a valid JSON object."}
-                ),
+                ({"ok": False, "message": "Please provide a valid JSON object."}),
                 400,
             )
 
@@ -103,7 +102,7 @@ def shorten():
         elif alias_type == "custom":
             slug = data.get("alias")
             if slug is None:
-                return ({"ok": False, "message": "Missing field `slug`."})
+                return {"ok": False, "message": "Missing field `slug`."}
 
             if not ALIAS_REGEX.match(slug):
                 return (
@@ -133,15 +132,38 @@ def shorten():
         url_entity = URLModel(url, slug)
         db_session.add(url_entity)
         db_session.commit()
-        return ({"ok": True, "message": f"{request.host_url}{slug}"}), 200
+
+        resp = {"ok": True, "message": f"{url_for('home', _external=True)}{slug}"}
+
+        try:
+            # make a qr for the shortened URL
+            qr = data.get("qr")
+            if qr and isinstance(qr, bool):
+                resp["qr_code"] = segno.make(
+                    resp["message"], micro=False
+                ).svg_data_uri(scale=7, border=2, light=None, dark="white")
+        except Exception as e:
+            logging.exception(e)
+        finally:
+            return resp, 200
 
     except sqlalchemy.exc.PendingRollbackError:
         db_session.rollback()
-        return ({"ok": False, "message": "Unable to fulfill this request, please try again."}), 500
+        return (
+            {
+                "ok": False,
+                "message": "Unable to fulfill this request, please try again.",
+            }
+        ), 500
 
     except Exception as e:
         logging.exception(e)
-        return ({"ok": False, "message": "An internal server error occured, please try again later."}), 500
+        return (
+            {
+                "ok": False,
+                "message": "An internal server error occured, please try again later.",
+            }
+        ), 500
 
 
 @app.route("/<string:slug>")

@@ -24,7 +24,8 @@ const getRequestData = () => {
     return {
         "original-url": url,
         "alias-type": aliasType,
-        "alias": alias
+        "alias": alias,
+        "qr": true
     }
 }
 
@@ -78,7 +79,14 @@ async function shorten(ev) {
                 } else {
                     resultStat.innerText = `Link made longer by ${Math.round(Math.abs(diff) / lenOriginal * 100)}% 😞`;
                 }
+
+                const qrImage = document.createElement("img");
+                qrImage.src = data["qr_code"];
+                qrImage.alt = "QR Code";
+                qrImage.classList.add("w-full", "h-auto", "rounded");
+                document.querySelector("#qrContainer").appendChild(qrImage);
             }
+
         })
 
         .catch(err => {
