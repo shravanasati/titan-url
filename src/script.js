@@ -83,13 +83,15 @@ async function shorten(ev) {
                 const qrImage = document.createElement("img");
                 qrImage.src = data["qr_code"];
                 qrImage.alt = "QR Code";
-                qrImage.classList.add("w-full", "h-auto", "rounded");
+                qrImage.classList.add("object-cover", "object-center", "rounded");
+                document.querySelector("#skullImg").remove();
                 document.querySelector("#qrContainer").appendChild(qrImage);
             }
 
         })
 
         .catch(err => {
+            console.error(err)
             urlText.innerText = "An error occured! Please try again later."
             shortenBtn.scrollIntoView()
         })

@@ -1,18 +1,23 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/shravanasati/stellapy/master/schema.json 
+# yaml-language-server: $schema=https://raw.githubusercontent.com/shravanasati/stellapy/master/schema.json
 browser: firefox
 include_only: []
 poll_interval: 200
 browser_wait_interval: 500
 follow_symlinks: false
 scripts:
-- name: default
-  url: 'localhost:5000'
-  command: 
-    - flask --app app run
-  shell: false
-- name: server
-  url: ''
-  command: 
-    - flask --app app run
-  shell: false
+  - name: default
+    url: "localhost:5000"
+    command:
+      - flask --app app run
+    shell: false
 
+  - name: server
+    url: ""
+    command:
+      - flask --app app run
+    shell: false
+
+  - name: serve-all
+    url: ""
+    command: 'flask --app app run -h "0.0.0.0" -p "5000"'
+    shell: false

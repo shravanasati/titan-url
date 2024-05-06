@@ -141,7 +141,7 @@ def shorten():
             if qr and isinstance(qr, bool):
                 resp["qr_code"] = segno.make(
                     resp["message"], micro=False
-                ).svg_data_uri(scale=7, border=2, light=None, dark="white")
+                ).png_data_uri(scale=7, border=2)
         except Exception as e:
             logging.exception(e)
         finally:
