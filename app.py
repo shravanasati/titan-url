@@ -11,7 +11,7 @@ from database import db_session, init_db
 from models import URL as URLModel
 
 from dotenv import load_dotenv
-from flask import Flask, render_template, request, url_for
+from flask import Flask, abort, render_template, request, url_for
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from requests.exceptions import MissingSchema
@@ -168,8 +168,13 @@ def shorten():
 
 @app.route("/<string:slug>")
 def get(slug):
-    url = db_session.query(URLModel).filter_by(slug=slug).first()
-    if url:
-        return render_template("redirect.html", url=url.original_url)
-    else:
-        return render_template("404.html")
+    try:
+        url = db_session.query(URLModel).filter_by(slug=slug).first()
+        if url:
+            return render_template("redirect.html", url=url.original_url)
+        else:
+            return render_template("404.html")
+
+    except sqlalchemy.exc.PendingRollbackError:
+        db_session.rollback()
+        abort(500)
