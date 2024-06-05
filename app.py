@@ -1,8 +1,9 @@
 import logging
 import os
-from random import choice
+import random
 import re
-from string import ascii_letters, digits
+import string
+from threading import Thread
 
 import sqlalchemy
 import sqlalchemy.exc
@@ -35,6 +36,7 @@ limiter = Limiter(
 )
 
 ALIAS_REGEX = re.compile(r"^(?=.*[A-Za-z0-9])[\w\-]{1,50}$")
+BLACKLISTED_ALIASES = {"shorten", "analytics"}
 
 
 def check_url(url: str) -> bool:
@@ -56,6 +58,25 @@ def is_slug_used(slug: str) -> bool:
     Returns a boolean value whether the given slug has been used or not.
     """
     return bool(db_session.query(URLModel).filter_by(slug=slug).first())
+
+
+def is_analytics_id_used(analytics_id: str) -> bool:
+    """
+    Returns a boolean value whether the given analytics ID has been used or not.
+    """
+    return bool(db_session.query(URLModel).filter_by(analytics_id=analytics_id).first())
+
+
+def generate_random_string(length: int):
+    charset = string.ascii_letters + string.digits
+    return "".join((random.choice(charset) for _ in range(length)))
+
+
+def construct_url_path(path: str):
+    """
+    Returns the full URL to the /path. Do NOT prepend `path` with `/`.
+    """
+    return f"{url_for('home', _external=True)}{path}"
 
 
 @app.route("/shorten", methods=["GET", "POST"])
@@ -88,21 +109,19 @@ def shorten():
             return ({"ok": False, "message": "The entered URL is invalid."}), 400
 
         if alias_type == "random":
-            slug = "".join(
-                [choice([choice(digits), choice(ascii_letters)]) for _ in range(6)]
-            )
-
+            slug = generate_random_string(6)
             slug_used = is_slug_used(slug)
             while slug_used:
-                slug = "".join(
-                    [choice([choice(digits), choice(ascii_letters)]) for _ in range(6)]
-                )
+                slug = generate_random_string(6)
                 slug_used = is_slug_used(slug)
 
         elif alias_type == "custom":
             slug = data.get("alias")
             if slug is None:
                 return {"ok": False, "message": "Missing field `slug`."}
+
+            if slug in BLACKLISTED_ALIASES:
+                return {"ok": False, "message": f"The alias {slug} is not allowed."}
 
             if not ALIAS_REGEX.match(slug):
                 return (
@@ -129,19 +148,29 @@ def shorten():
         else:
             return ({"ok": False, "message": "Invalid alias type!"}), 400
 
-        url_entity = URLModel(url, slug)
+        analytics_id = generate_random_string(6)
+        analytics_id_used = is_analytics_id_used(analytics_id)
+        while analytics_id_used:
+            analytics_id = generate_random_string(6)
+            analytics_id_used = is_analytics_id_used(analytics_id)
+
+        url_entity = URLModel(url, slug, analytics_id)
         db_session.add(url_entity)
         db_session.commit()
 
-        resp = {"ok": True, "message": f"{url_for('home', _external=True)}{slug}"}
+        resp = {
+            "ok": True,
+            "message": construct_url_path(slug),
+            "analytics_url": construct_url_path(f"analytics/{analytics_id}"),
+        }
 
         try:
             # make a qr for the shortened URL
             qr = data.get("qr")
             if qr and isinstance(qr, bool):
-                resp["qr_code"] = segno.make(
-                    resp["message"], micro=False
-                ).png_data_uri(scale=7, border=2)
+                resp["qr_code"] = segno.make(resp["message"], micro=False).png_data_uri(
+                    scale=7, border=2
+                )
         except Exception as e:
             logging.exception(e)
         finally:
@@ -166,12 +195,40 @@ def shorten():
         ), 500
 
 
+@app.route("/analytics/<string:analytics_id>", methods=["GET"])
+def analytics(analytics_id: str):
+    url_entity = db_session.query(URLModel).filter_by(analytics_id=analytics_id).first()
+    if not url_entity:
+        return render_template("404.html")
+
+    return render_template("analytics.html", url_entity=url_entity)
+
+
+def increment_clicks(url_model: URLModel):
+    db_session.query(URLModel).filter_by(slug=url_model.slug).update(
+        {"clicks": url_model.clicks + 1}
+    )
+
+    max_retries = 5
+    retry_count = 0
+    while retry_count < max_retries:
+        try:
+            db_session.commit()
+            break
+
+        except sqlalchemy.exc.PendingRollbackError:
+            db_session.rollback()
+            retry_count += 1
+
+
 @app.route("/<string:slug>")
 def get(slug):
     try:
-        url = db_session.query(URLModel).filter_by(slug=slug).first()
-        if url:
-            return render_template("redirect.html", url=url.original_url)
+        url_model = db_session.query(URLModel).filter_by(slug=slug).first()
+        if url_model:
+            t = Thread(target=increment_clicks, args=(url_model,))
+            t.start()
+            return render_template("redirect.html", url=url_model.original_url)
         else:
             return render_template("404.html")
 

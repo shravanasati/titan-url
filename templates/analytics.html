@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Titan URL | Shorten your URLs</title>
+
+	<meta name="google-site-verification" content="aPqwSSs36MAE8EUIC-kDA4gvuLH8Lfkz7CigxXypNPY" />
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Titan URL | Shorten your URLs</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles/utils.css') }}">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+	<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../static/styles/style.css">
+	<link rel="shortcut icon"
+		href="https://lh3.googleusercontent.com/-31-codqBgas/YLe3EgGX5VI/AAAAAAAAAd0/UQ06BPBa0Iwwy7Yvg20kyKsJGI3Kzl21ACLcBGAsYHQ/tlog.jpeg"
+		type="image/jpg">
+</head>
+
+<style>
+	#navlost {
+		position: sticky;
+		top: 0;
+	}
+
+	* {
+		overflow-x: hidden;
+	}
+</style>
+
+<body>
+	<!-- * NAVBAR -->
+	<div id="navlost">
+		<header class="text-gray-400 bg-gray-600 body-font">
+			<div class="container mx-auto flex flex-wrap p-3 flex-col md:flex-row items-center">
+				<a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
+					<img src="../static/images/logomain.png" alt="" width="70">
+					<span class="ml-3 text-xl">Titan URL</span>
+				</a>
+				<nav
+					class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-700	flex flex-wrap items-center text-base justify-center">
+					<a class="mr-5 hover:text-white" href="/">Home</a>
+					<!-- <a class="mr-5 hover:text-white" href="#adv">Features</a>
+					<a class="mr-5 hover:text-white" href="#shortener">Shorten</a> -->
+					<a class="mr-5 hover:text-white" href="https://github.com/shravanasati/titan-url"
+						target="_blank">GitHub</a>
+				</nav>
+			</div>
+		</header>
+	</div>
+
+	<section id="shortener" class="bg-gray-900 text-gray-400 h-screen flex flex-col md:flex-row justify-evenly">
+		<div class="md:w-1/2 p-8">
+			<h1 class="text-3xl font-bold mb-4">URL Analytics for <u><a href="/{{url_entity.slug}}"
+						class="underline">{{url_entity.slug}}</a></u></h1>
+			<div class="flex flex-col">
+				<h4 class="mb-2">Points to: {{url_entity.original_url | safe}}</h4>
+				<h4>Clicks: {{url_entity.clicks}}</h4>
+			</div>
+		</div>
+	</section>
+
+</body>
+
+</html>

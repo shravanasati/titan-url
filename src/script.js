@@ -13,8 +13,20 @@ async function copyToClipboard() {
     copybtn.innerText = "Copy"
 }
 
+async function analyticsCopyToClipboard() {
+    let resultURL = document.getElementById("analytics-url").innerText
+    await navigator.clipboard.writeText(resultURL)
+    let copybtn = document.getElementById("analyticsCopyBtn")
+    copybtn.innerText = "Copied!"
+    await sleep(3000)
+    copybtn.innerText = "Copy"
+}
+
 let copyBtn = document.getElementById("copyBtn")
 copyBtn.addEventListener("click", copyToClipboard)
+
+let analyticsCopyBtn = document.getElementById("analyticsCopyBtn")
+analyticsCopyBtn.addEventListener("click", analyticsCopyToClipboard)
 
 const getRequestData = () => {
     const url = document.getElementById("original-url").value
@@ -34,6 +46,7 @@ async function shorten(ev) {
     console.log("shortening...");
     let requestData = getRequestData()
     let urlText = document.querySelector("#result-url");
+    let analyticsText = document.querySelector("#analytics-url");
     let shortenBtn = document.querySelector("#shortenBtn")
     let resultStat = document.querySelector("#result-stat");
 
@@ -79,6 +92,9 @@ async function shorten(ev) {
                 } else {
                     resultStat.innerText = `Link made longer by ${Math.round(Math.abs(diff) / lenOriginal * 100)}% 😞`;
                 }
+
+                analyticsText.innerText = data["analytics_url"]
+                document.querySelector(".analyticsContainer").classList.remove("hidden")
 
                 const qrImage = document.createElement("img");
                 qrImage.src = data["qr_code"];

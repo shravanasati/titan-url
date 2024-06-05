@@ -32,7 +32,8 @@ The payload for the POST request must be json. The json payload must have these 
 {
 	"original-url": "the url you want to shorten",
 	"alias-type": "either custom or random",
-	"alias": "custom-alias" // can be omitted if the alias-type is random
+	"alias": "custom-alias", // can be omitted if the alias-type is random
+	"qr": true // optional, request a QR code of the shortened link
 }
 ```
 
@@ -40,8 +41,15 @@ The response will also be of json type.
 ```json
 {
 	"ok": true,
-	"message": "https://titanurl.vercel.app/demo"
+	"message": "https://titanurl.vercel.app/demo",
+	"analytics_url": "https://titanurl.vercel.app/analytics/someAnalyticsID"
 }
+```
+
+If a QR code was also requested, then the response will contain a `qr_code` field which is the base64-encoded PNG data URI of the QR image, which might look something like this:
+
+```
+data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMsAAADLAQAAA...
 ```
 
 Whether the request to the API is successfull or not, the response json schema will always be the same. Make sure to check the `ok` key to know whether the request was successfull or not. In case the request fails, the `message` key will contain the error message.

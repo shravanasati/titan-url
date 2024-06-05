@@ -3,7 +3,6 @@ browser: firefox
 include_only: []
 poll_interval: 200
 browser_wait_interval: 500
-follow_symlinks: false
 scripts:
   - name: default
     url: "localhost:5000"

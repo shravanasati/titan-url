@@ -85,13 +85,23 @@
             <br>
             </form>
           </div>
-          <div class="result flex items-center justify-center py-5">
-            <h2 class="leading-relaxed text-center" id="result-url">
-              The shortened URL will appear here.
-            </h2>
-            <button
-              class="inline-flex text-white bg-red-500 border-0 py-1 px-6 focus:outline-none hover:bg-red-600 rounded text-lg mb-4"
-              id="copyBtn">Copy</button>
+          <div class="result flex flex-col items-center justify-center py-5">
+            <div>
+              <h2 class="leading-relaxed text-center" id="result-url">
+                The shortened URL will appear here.
+              </h2>
+              <button
+                class="inline-flex text-white bg-red-500 border-0 py-1 px-6 focus:outline-none hover:bg-red-600 rounded text-lg mb-4"
+                id="copyBtn">Copy</button>
+            </div>
+            <div class="analyticsContainer hidden">
+              <h2 class="leading-relaxed text-center" id="analytics-url">
+                The analytics URL will appear here.
+              </h2>
+              <button
+                class="inline-flex text-white bg-red-500 border-0 py-1 px-6 focus:outline-none hover:bg-red-600 rounded text-lg mb-4"
+                id="analyticsCopyBtn">Copy</button>
+            </div>
           </div>
           <div class="result flex items-center justify-center py-3 my-1">
             <h2 class="leading-relaxed text-center" id="result-stat"></h2>
