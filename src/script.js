@@ -100,6 +100,10 @@ async function shorten(ev) {
                 qrImage.src = data["qr_code"];
                 qrImage.alt = "QR Code";
                 qrImage.classList.add("object-cover", "object-center", "rounded");
+                // setting ID to skullImg because if url is shortened more than
+                // once in a single session you'd get stacked QR images
+                // the below check would remove the qr too
+                qrImage.id = "skullImg"
                 const skullImg = document.querySelector("#skullImg")
                 if (skullImg) {
                     skullImg.remove()
