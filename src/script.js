@@ -100,7 +100,10 @@ async function shorten(ev) {
                 qrImage.src = data["qr_code"];
                 qrImage.alt = "QR Code";
                 qrImage.classList.add("object-cover", "object-center", "rounded");
-                document.querySelector("#skullImg").remove();
+                const skullImg = document.querySelector("#skullImg")
+                if (skullImg) {
+                    skullImg.remove()
+                }
                 document.querySelector("#qrContainer").appendChild(qrImage);
             }
 
