@@ -108,6 +108,7 @@ async function shorten(ev) {
                 if (skullImg) {
                     skullImg.remove()
                 }
+                document.querySelector("#qrContainer").innerHTML = "";
                 document.querySelector("#qrContainer").appendChild(qrImage);
             }
 
