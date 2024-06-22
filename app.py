@@ -7,6 +7,8 @@ from threading import Thread
 
 import sqlalchemy
 import sqlalchemy.exc
+import werkzeug
+import werkzeug.exceptions
 
 from database import db_session, init_db
 from models import URL as URLModel
@@ -118,10 +120,13 @@ def shorten():
         elif alias_type == "custom":
             slug = data.get("alias")
             if slug is None:
-                return {"ok": False, "message": "Missing field `slug`."}
+                return {"ok": False, "message": "Missing field `slug`."}, 400
 
             if slug in BLACKLISTED_ALIASES:
-                return {"ok": False, "message": f"The alias {slug} is not allowed."}
+                return {
+                    "ok": False,
+                    "message": f"The alias {slug} is not allowed.",
+                }, 400
 
             if not ALIAS_REGEX.match(slug):
                 return (
@@ -175,6 +180,9 @@ def shorten():
             logging.exception(e)
         finally:
             return resp, 200
+
+    except (werkzeug.exceptions.BadRequest, werkzeug.exceptions.UnsupportedMediaType):
+        return ({"ok": False, "message": "Invalid/Missing JSON object."}, 422)
 
     except sqlalchemy.exc.PendingRollbackError:
         db_session.rollback()
@@ -230,7 +238,7 @@ def get(slug):
             t.start()
             return render_template("redirect.html", url=url_model.original_url)
         else:
-            return render_template("404.html")
+            return render_template("404.html"), 404
 
     except sqlalchemy.exc.PendingRollbackError:
         db_session.rollback()
