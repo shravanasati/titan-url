@@ -4,6 +4,7 @@ import random
 import re
 import string
 from threading import Thread
+import time
 
 import sqlalchemy
 import sqlalchemy.exc
@@ -212,21 +213,29 @@ def analytics(analytics_id: str):
     return render_template("analytics.html", url_entity=url_entity)
 
 
-def increment_clicks(url_model: URLModel):
-    db_session.query(URLModel).filter_by(slug=url_model.slug).update(
-        {"clicks": url_model.clicks + 1}
-    )
-
+def increment_clicks(slug: str):
     max_retries = 5
-    retry_count = 0
-    while retry_count < max_retries:
+    for i in range(max_retries):
         try:
+            # Fetch the current click count in a fresh query to avoid stale data
+            current_clicks = (
+                db_session.query(URLModel.clicks)
+                .filter_by(slug=slug)
+                .scalar()
+            )
+            # Update clicks with the new value
+            db_session.query(URLModel).filter_by(slug=slug).update(
+                {"clicks": current_clicks + 1}
+            )
             db_session.commit()
-            break
-
+            return
         except sqlalchemy.exc.PendingRollbackError:
             db_session.rollback()
-            retry_count += 1
+            time.sleep(2 ** i)
+        except Exception as e:
+            print(f"Failed to increment clicks: {e}")
+            db_session.rollback()
+            time.sleep(2 ** i)
 
 
 @app.route("/<string:slug>")
@@ -234,7 +243,7 @@ def get(slug):
     try:
         url_model = db_session.query(URLModel).filter_by(slug=slug).first()
         if url_model:
-            t = Thread(target=increment_clicks, args=(url_model,))
+            t = Thread(target=increment_clicks, args=(url_model.slug,))
             t.start()
             return render_template("redirect.html", url=url_model.original_url)
         else:
